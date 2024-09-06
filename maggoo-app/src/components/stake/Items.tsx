@@ -37,7 +37,7 @@ const Items = () => {
                 <div className="flex flex-col items-center justify-center relative w-full h-full bounce">
                   <Image
                     src={`/full/Worm_${index}.png`}
-                    className="h-[250px] max-h-[100%] w-full z-50 "
+                    className="h-[250px] max-h-[100%] w-full "
                     alt="nft"
                     height={250}
                     width={250}
@@ -100,7 +100,7 @@ const Items = () => {
                     width={180}
                     height={180}
                     src="/assets/Shimmer_Worm.svg"
-                    className="h-[180px] max-h-[100%]  w-full z-50 bg-transparent "
+                    className="h-[180px] max-h-[100%]  w-full  bg-transparent "
                     alt="asd"
                   />
                 </div>
@@ -128,7 +128,7 @@ const Items = () => {
                         <div className=" w-full flex items-center h-full pt-1">
                           <Skeleton
                             classNames={{
-                              base: "dark:before:bg-c-primary before:from-white w-1/2 h-1/2 before:rounded-sm z-20    rounded-3xl before:!duration-500 !duration-500 dark:before:to-white"
+                              base: "dark:before:bg-c-primary before:from-white w-1/2 h-1/2 before:rounded-sm    rounded-3xl before:!duration-500 !duration-500 dark:before:to-white"
                             }}
                             className=" opacity-10"
                           />
@@ -139,7 +139,7 @@ const Items = () => {
                   <div className=" w-1/3 flex items-center justify-center h-full">
                     <Skeleton
                       classNames={{
-                        base: "dark:before:bg-c-primary before:from-white  h-2/3 w-full before:rounded-sm z-20 btn  btn-primary    before:!duration-500 !duration-500 dark:before:to-white"
+                        base: "dark:before:bg-c-primary before:from-white  h-2/3 w-full before:rounded-sm  btn  btn-primary    before:!duration-500 !duration-500 dark:before:to-white"
                       }}
                       className=" opacity-10"
                     />
