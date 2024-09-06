@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  @apply bg-header-bg;
+}
+
+.total-players {
+  margin: 40px 0;
+  width: 266px;
+  height: 104px;
+
+  padding: 20px 40px;
+  border-radius: 8px;
+  background-image: linear-gradient(
+    to left,
+    rgba(102, 102, 204, 0.6),
+    rgba(9, 9, 43, 0.5) 48%,
+    #09092b
+  );
+
+  .title {
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2;
+    letter-spacing: normal;
+    text-align: left;
+    color: #fff;
+  }
+
+  .counter {
+    font-size: 36px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 0.89;
+    letter-spacing: normal;
+    text-align: left;
+    color: #fff;
+  }
+}
+
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.marquee-content {
+  display: flex;
+  animation: marquee 10s linear infinite;
+  gap: 40px; /* İstenilen boşluk */
+  align-items: center; /* Dikeyde ortalama */
+}
+
+.logo-item {
+  width: 200px; /* Sabit genişlik */
+  height: 150px; /* Sabit yükseklik */
+  object-fit: contain; /* Görsellerin orantılı olarak sığdırılması */
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.heroes {
+  position: absolute;
+  bottom: 100px;
+  right: calc(50% - 450px);
+  width: 900px;
+  z-index: 9999999;
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.mobil-heroes {
+  bottom: 130px !important;
+  right: calc(50% - 125px) !important;
+  width: 250px !important;
+}
+
+.cloud-bg {
+  position: absolute;
+  width: 100%;
+  height: 700px;
+  bottom: 0;
+
+  background-image: url("/illustrations/home-clouds.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 10;
+}
+
+.mobil-cloud-bg {
+  position: absolute;
+  width: 100%;
+  height: 270px !important;
+  bottom: 0;
+  background-image: url("/illustrations/home-clouds.webp");
+
+  background-size: contain !important;
+  background-repeat: no-repeat;
+  z-index: 10;
+}
+
+.mountain-bg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 468px;
+  opacity: 0.5;
+  background-image: url("/illustrations/home-mountains.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 11;
+}
+.mobil-mountain-bg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 224px !important;
+  opacity: 0.5;
+  background-image: url("/illustrations/home-mountains.png");
+  background-size: contain !important;
+  background-repeat: no-repeat;
+  z-index: 11;
+}
+.bg-rectangle {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 12;
+  width: 100%;
+  height: 327px;
+  background-image: linear-gradient(to bottom, rgba(9, 9, 43, 0), #09092b);
+}
+
+.mobil-bg-rectangle {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 12;
+  width: 100%;
+  height: 377px;
+  background-image: linear-gradient(to bottom, rgba(9, 9, 43, 0), #09092b);
+}
+
+.btn {
+  @apply transition-all duration-300 ease-in-out bg-body-bg  rounded-lg text-white;
+}
+
+.btn-primary {
+  @apply border-2 border-primary-100 bg-primary-300 text-white;
+
+  &:hover {
+    @apply border-primary-300 bg-primary-300;
+  }
+}
