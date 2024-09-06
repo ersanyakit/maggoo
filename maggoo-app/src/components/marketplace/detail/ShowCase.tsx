@@ -17,7 +17,7 @@ const ShowCase = () => {
 
           <div className="flex flex-col items-center justify-center relative w-full h-full bounce">
             <Image
-              src="/full/Worm_1.png"
+              src="/maggoo/1/Worm_1.png"
               className=" h-full min-h-[525px] w-full z-50 object-cover"
               alt="asd"
             />

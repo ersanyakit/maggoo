@@ -6,7 +6,7 @@ const Info = ({ item }: { item: string }) => {
     <div className="w-full h-full">
       <div className="w-full flex bg-header-bg rounded-xl flex-col">
         <div className=" flex items-center   ">
-          <Image src="/full/Worm_1.png" width={120} alt="logo" />
+          <Image src="/maggoo/1/Worm_1.png" width={120} alt="logo" />
           <div className="flex flex-col  ">
             <p className="text-primary-200 text-xl">Details</p>
             <p className="text-2xl"> {item ?? "Worm-1"}</p>

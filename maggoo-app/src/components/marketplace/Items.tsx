@@ -21,8 +21,7 @@ const Items = () => {
           {NFTs.map((item: any, index: number) => (
             <div
               key={`NFTs_${index}`}
-              className="nft_cards w-full col-span-1   "
-            >
+              className="nft_cards w-full col-span-1   ">
               <div className="item">
                 <div className="item_header">
                   <div className="title">{item.name}</div>
@@ -37,7 +36,7 @@ const Items = () => {
                 <div className="flex flex-col items-center justify-center relative w-full h-full bounce bg-transparent">
                   <Image
                     priority
-                    src={`/full/Worm_${index}.png`}
+                    src={`/maggoo/${1}/Worm_${index}.png`}
                     width={250}
                     height={250}
                     className="xl:h-[250px] xl:max-h-[100%] sm:h-[220px] sm:w-[220px] w-full z-50 bg-transparent "
@@ -77,13 +76,12 @@ const Items = () => {
           {NFTs.map((item: any, index: number) => (
             <div
               key={`NFTs_${index}`}
-              className="nft_cards w-full col-span-1   "
-            >
+              className="nft_cards w-full col-span-1   ">
               <div className="item   ">
                 <div className="item_header ">
                   <Skeleton
                     classNames={{
-                      base: "before:from-white/20 before:rounded-sm  rounded-3xl before:!duration-500 !duration-700 dark:before:to-white/20",
+                      base: "before:from-white/20 before:rounded-sm  rounded-3xl before:!duration-500 !duration-700 dark:before:to-white/20"
                     }}
                     className="title rounded-full"
                   />
@@ -93,7 +91,7 @@ const Items = () => {
                         <span className="absolute  right-1 h-full w-full ">
                           <Skeleton
                             classNames={{
-                              base: "before:from-white/20 before:rounded-sm   rounded-3xl before:!duration-500 !duration-500 dark:before:to-white/20",
+                              base: "before:from-white/20 before:rounded-sm   rounded-3xl before:!duration-500 !duration-500 dark:before:to-white/20"
                             }}
                             className=" opacity-10"
                           />
@@ -117,7 +115,7 @@ const Items = () => {
                     <div className=" relative w-full h-full pt-1">
                       <Skeleton
                         classNames={{
-                          base: "dark:before:bg-c-primary before:from-white w-1/2 h-full before:rounded-sm    rounded-3xl before:!duration-500 !duration-500 dark:before:to-white",
+                          base: "dark:before:bg-c-primary before:from-white w-1/2 h-full before:rounded-sm    rounded-3xl before:!duration-500 !duration-500 dark:before:to-white"
                         }}
                         className=" opacity-10"
                       />
@@ -127,7 +125,7 @@ const Items = () => {
                         <div className="w-16 rounded-full flex items-center h-12">
                           <Skeleton
                             classNames={{
-                              base: "dark:before:bg-c-primary before:from-white w-1/2 h-1/2 before:rounded-sm     rounded-3xl before:!duration-500 !duration-500 dark:before:to-white",
+                              base: "dark:before:bg-c-primary before:from-white w-1/2 h-1/2 before:rounded-sm     rounded-3xl before:!duration-500 !duration-500 dark:before:to-white"
                             }}
                             className=" opacity-10"
                           />
@@ -135,7 +133,7 @@ const Items = () => {
                         <div className=" w-full flex items-center h-full pt-1">
                           <Skeleton
                             classNames={{
-                              base: "dark:before:bg-c-primary before:from-white w-1/2 h-1/2 before:rounded-sm z-20    rounded-3xl before:!duration-500 !duration-500 dark:before:to-white",
+                              base: "dark:before:bg-c-primary before:from-white w-1/2 h-1/2 before:rounded-sm z-20    rounded-3xl before:!duration-500 !duration-500 dark:before:to-white"
                             }}
                             className=" opacity-10"
                           />
@@ -146,7 +144,7 @@ const Items = () => {
                   <div className=" w-1/3 flex items-center justify-center h-full">
                     <Skeleton
                       classNames={{
-                        base: "dark:before:bg-c-primary before:from-white  h-2/3 w-full before:rounded-sm z-20 btn  btn-primary    before:!duration-500 !duration-500 dark:before:to-white",
+                        base: "dark:before:bg-c-primary before:from-white  h-2/3 w-full before:rounded-sm z-20 btn  btn-primary    before:!duration-500 !duration-500 dark:before:to-white"
                       }}
                       className=" opacity-10"
                     />
