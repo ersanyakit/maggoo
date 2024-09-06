@@ -36,7 +36,7 @@ const Items = () => {
                 </div>
                 <div className="flex flex-col items-center justify-center relative w-full h-full bounce">
                   <Image
-                    src={`/full/Worm_${index}.png`}
+                    src={`/maggoo/${index + 1}/Worm_${index + 1}.png`}
                     className="h-[250px] max-h-[100%] w-full "
                     alt="nft"
                     height={250}
