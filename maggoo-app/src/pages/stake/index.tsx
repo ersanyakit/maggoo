@@ -53,7 +53,7 @@ const Stake = () => {
 
       {/* Mobile sidebar */}
       <div
-        className={`fixed top-16 left-0 h-screen w-full z-20 transform transition-transform duration-300 ${
+        className={`fixed top-16 left-0 h-screen w-full  transform transition-transform duration-300 ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}>
         <div className="p-5">
