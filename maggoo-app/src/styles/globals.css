@@ -120,7 +120,6 @@ body {
 .nft_cards .item {
   cursor: pointer;
   position: relative;
-  z-index: 11;
   padding: 0;
   height: 24rem;
   width: auto;

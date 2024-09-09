@@ -107,7 +107,7 @@ const Maggoo = (props: { character: any; isMarketItem: boolean }) => {
             )}
             width={185}
             height={260}
-            className="  absolute"
+            className={ "  absolute"}
             alt={characterInfo.Name}
           />
         </div>
