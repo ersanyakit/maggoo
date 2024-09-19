@@ -14,7 +14,7 @@ export const Intro: FC<any> = ({ color, className, ...rest }) => (
 
 
     <div className="w-screen h-screen min-h-[800px] flex flex-col">
-        <div className="w-full flex-col  h-screen flex justify-center items-center bg-[url('/illustrations/home-section-bg.webp')] sm:bg-cover bg-contain bg-no-repeat ">
+        <div className="w-screen flex-col  h-screen flex justify-center items-center bg-[url('/illustrations/home-section-bg.webp')] sm:bg-cover bg-contain bg-no-repeat ">
 
 
             <div
