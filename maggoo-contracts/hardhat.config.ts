@@ -154,8 +154,8 @@ const config: HardhatUserConfig = {
   },
   networks: {
     hardhat:  {
-      allowUnlimitedContractSize: true,
-      blockGasLimit:8000000
+      allowUnlimitedContractSize: false,
+      blockGasLimit:50000000
     },
     matic: {
       url: process.env.MATIC_HTTP || "",

@@ -12,6 +12,7 @@ import {
 } from "@web3modal/ethers/react";
 
 import {
+  BODY_TOKEN_ID_START,
   getTokenWearables,
   MAGGO_DIAMOND_CONTRACT,
   MAGGO_NFT_CONTRACT
@@ -24,7 +25,7 @@ import {
   GetContractAt,
   selectedClient
 } from "@/utils/web3";
-import { getContract } from "viem";
+import { formatEther, getContract, parseEther } from "viem";
 
 import SellModal from "@/components/profile/SellModal";
 import NFTCard from "@/components/marketplace/nftCard";
@@ -68,6 +69,39 @@ const Profile = () => {
     collectionsGetter();
   }, [address, chainId, isConnected]);
 
+
+  const getPrice = (tokenId : any) => {
+    const min = parseInt(tokenId) < BODY_TOKEN_ID_START ? 115 : 260
+    const max = parseInt(tokenId) < BODY_TOKEN_ID_START ? 150 : 280
+    const randomNum = Math.random() * (max - min) + min;
+    return  parseEther(randomNum.toFixed(2));
+  }
+  const handleBulkSell = async () =>{
+
+    const sellParams : any = []
+    nfts.result.map((item: any, index: number) => {
+
+
+        let sellParam = {
+                    assetType:3,
+                    contractAddress:item.token_address,
+                    tokenId:item.token_id,
+                    amount:1,
+                    price:getPrice(item.token_id)
+                }
+                sellParams.push(sellParam)
+          })
+
+          const signer = await GetSigner(walletProvider);
+          const contract = GetContractAt(MAGGO_DIAMOND_CONTRACT);
+          const tx = await contract
+          .connect(signer)
+          // @ts-ignore
+          .sell(sellParams);
+          await tx.wait();
+
+}
+
   return (
     <>
       <Head>
@@ -96,6 +130,13 @@ const Profile = () => {
                   </div>
                 ))}
             </div>
+
+            <div className="w-full flex flex-col gap-2 items-center justify-center">
+            <Button size="lg" onClick={()=>{
+              handleBulkSell()
+            }}>Sell All NFTs</Button>
+            </div>
+
           </Tab>
 
           <Tab key="on_list" title="On List">

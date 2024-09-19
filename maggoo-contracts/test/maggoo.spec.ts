@@ -11,9 +11,6 @@ const {DiamondFacetList} = require("../libs/facets.js")
 
 const {MAGGOO_ITEMS} = require("../libs/maggo.js")
 
-const MERKLE_TREE_DATA = require("../scripts/merkle/merkle_data.json");
-
-
 const {getSelectors, FacetCutAction} = require("../libs/diamond.js")
 ethers.utils.Logger.setLogLevel(ethers.utils.Logger.levels.OFF);
 
@@ -180,13 +177,6 @@ describe("Deploy KEWL STAKE", function () {
 
  
 
-    //2144735
-    //2111213
-    //2110973
-    //2110872
-    //2144370
-
-
             /*/ 1 numarali maggo'nun ilk 3 vucudunun mintlenmesi
            let characterIndex = 1
            let maggoo1Body1 = getMintParams(true,characterIndex,1,"");    
@@ -195,12 +185,14 @@ describe("Deploy KEWL STAKE", function () {
             let createParams : any = [maggoo1Body1,maggoo1Body2,maggoo1Body3]
             */
 
-            let createParams = getRandomMintParams(true,15) // rastgele 5 tane body uret
+            let createParams = getRandomMintParams(true,1) // rastgele 5 tane body uret
             let depositOverrides = {
                 value : eggFee.mul(createParams.length)
             }
 
 
+
+            console.log("createParamsLength",createParams.length)
             const createBodyGas = await FactoryFacet.estimateGas.create(createParams,depositOverrides)
 
 

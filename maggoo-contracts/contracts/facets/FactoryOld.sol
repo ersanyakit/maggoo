@@ -15,7 +15,7 @@ import "../interfaces/IPAIR.sol";
 import "../libs/TransferHelper.sol";
 import "../interfaces/IChilizWrapper.sol";
 
-contract Factory is Modifiers {
+contract FactoryOld is Modifiers {
     using LibUintUtils for uint256;
 
 
@@ -115,71 +115,70 @@ function incrementSupply(CharacterInfo storage characterInfo, uint256 wearableId
     revert InvalidItemType();
 }
 
-function createBody(CreateParam calldata param) internal{
+function create(CreateParam[] calldata params) public payable nonReentrant whenNotContract(msg.sender){
     LibSettings.Layout storage settings = LibSettings.layout();
     LibMaggoo.Layout storage maggooLib = LibMaggoo.layout();
 
-
-    uint256 characterId =  getRandomNumber(param.entryPoint,uint256(uint160(msg.sender)), maggooLib.characterCount); 
-    CharacterInfo storage characterInfo = maggooLib.characterInfo[characterId];
-    (uint256 currentSupply, string memory characterName) = incrementSupply(characterInfo,0);
-    
-    if(currentSupply > characterInfo.TotalSupply){
-        revert ExceedsMaximumSupply(currentSupply,characterInfo.TotalSupply);
-    }
-    
-    uint256 tokenId = (characterId * LibMaggoo.BODY_TOKEN_ID_START)+ currentSupply;
-    
-    Character storage character = maggooLib.characters[tokenId];
-    character.name = characterName;
-    character.tokenId = tokenId;
-    character.isBaseBody =  true;
-    character.isInitialized = true;
-    character.createdAt = block.timestamp;
-    character.creator = msg.sender;
-    character.hashPower = characterInfo.HP;
-    
-    maggooLib.userMintHistory[msg.sender].push(MintInfo({tokenId:tokenId,blockTimestamp:block.timestamp}));
-
     IMaggooNFT maggooNFT = IMaggooNFT(settings.MAGGOONFT); 
-    
-    if(address(maggooNFT) == address(0)){
+     if(address(maggooNFT) == address(0)){
         revert InvalidContractAddress();
     }
 
-    maggooNFT.mint(msg.sender,tokenId,1);
-}
-//539072
-//538637
-//538639
-function createSub(CreateParam calldata param) internal{
-
-}
-
-function create(CreateParam[] calldata params) public payable nonReentrant whenNotContract(msg.sender){
-//65239
-//65196
-//65144
-    uint256 length = params.length;
-    uint256 totalDeposit = 0;
-    for(uint256 i; i < length;){
-        CreateParam calldata param = params[i];
-        if(param.isBase){
-            createBody(param);
-            totalDeposit += LibSettings.layout().eggFee;
-        }else{
-            createSub(param);
-            totalDeposit += LibSettings.layout().mysteryboxFee;
+    CreateConfig memory config;
+    config.timestamp = block.timestamp;
+    config.maggooCount = maggooLib.characterCount;
+    config.length = params.length;
+    (config.eggFee,config.mysteryboxFee) = (settings.eggFee,settings.mysteryboxFee);
+   
+    for(uint256 i; i < config.length;){
+        config.param = params[i];
+   
+        config.characterId =  getRandomNumber(config.param.entryPoint,i,config.maggooCount); 
+        config.totalDeposit += config.param.isBase ? config.eggFee : config.mysteryboxFee;
+        config.wearableId = config.param.isBase ? 0 : getRandomNumber(config.param.entryPoint, i, 6);
+        
+        CharacterInfo storage characterInfo = maggooLib.characterInfo[config.characterId];
+        (config.currentSupply, config.characterName) = incrementSupply(characterInfo,config.wearableId);
+      
+        if(config.currentSupply > characterInfo.TotalSupply){
+           revert ExceedsMaximumSupply(config.currentSupply,characterInfo.TotalSupply);
         }
-        unchecked{
+      
+        config.tokenId = (config.characterId * (config.param.isBase ? LibMaggoo.BODY_TOKEN_ID_START : LibMaggoo.WEARABLE_TOKEN_ID_START));
+        config.tokenId += (config.param.isBase ? config.currentSupply : config.wearableId);
+        
+        Character storage character = maggooLib.characters[config.tokenId];
+        if (character.isInitialized) {
+            if(character.isBaseBody){
+                revert CharacterAlreadyExists(config.tokenId);
+            }
+        } else{
+            character.name = config.characterName;
+            character.tokenId = config.tokenId;
+            character.isBaseBody =  config.param.isBase;
+            character.isInitialized = true;
+
+            if (character.isBaseBody) {
+                character.createdAt = config.timestamp;
+                character.creator = msg.sender;
+                character.hashPower = characterInfo.HP;
+            } else {
+                character.hashPower = characterInfo.HP > config.wearableId ? characterInfo.HP - config.wearableId : 0;
+            }
+        }
+
+        maggooLib.userMintHistory[msg.sender].push(MintInfo({tokenId:config.tokenId,blockTimestamp:config.timestamp}));
+
+        maggooNFT.mint(msg.sender,config.tokenId,1);
+        unchecked {
             i++;
         }
     }
 
-    if(msg.value < totalDeposit){
-        revert DepositAmountMismatch(msg.value,totalDeposit);
+    if(msg.value < config.totalDeposit){
+        revert DepositAmountMismatch(msg.value,config.totalDeposit);
     }
-    TransferHelper.safeTransferETH(LibSettings.layout().feeReceiver,address(this).balance);
+    TransferHelper.safeTransferETH(settings.feeReceiver,address(this).balance);
 }
 
 function verifyWearableItem(uint256 bodyId, uint256 wearableId) public pure returns (bool) {
