@@ -1,6 +1,8 @@
 
-**Name**: 🎰 MAGGOO
-**Description**: Maggoo Land is a community driven decentralized P2E gaming platform with upgradable NFT cult characters called Maggoo.
+# MAGGOO
+
+## Description
+Maggoo Land is a community driven decentralized P2E gaming platform with upgradable NFT cult characters called Maggoo.
 
 ## Maggoo Telegram:
 https://t.me/maggooio
