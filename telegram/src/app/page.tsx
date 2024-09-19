@@ -1,13 +1,17 @@
 'use client';
+import "@/styles/global.css";
 
 import { Section, Cell, Image, List } from '@telegram-apps/telegram-ui';
 
 import { Link } from '@/components/Link/Link';
 
 import tonSvg from './_assets/ton.svg';
+import { Intro } from '@/components/Maggoo/Intro';
 
 export default function Home() {
   return (
+    <>
+    <Intro/>
     <List>
       <Section
         header='Features'
@@ -37,5 +41,6 @@ export default function Home() {
         </Link>
       </Section>
     </List>
+    </>
   );
 }
