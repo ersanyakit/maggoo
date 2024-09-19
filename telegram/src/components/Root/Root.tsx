@@ -20,6 +20,7 @@ import { useTelegramMock } from '@/hooks/useTelegramMock';
 import { useDidMount } from '@/hooks/useDidMount';
 
 import './styles.css';
+import { Intro } from '../Maggoo/Intro';
 
 function App(props: PropsWithChildren) {
   const lp = useLaunchParams();
@@ -88,5 +89,5 @@ export function Root(props: PropsWithChildren) {
     <ErrorBoundary fallback={ErrorPage}>
       <RootInner {...props}/>
     </ErrorBoundary>
-  ) : <div className="root__loading">Loading</div>;
+  ) :  <Intro />;
 }
