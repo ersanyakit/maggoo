@@ -8,8 +8,8 @@ import 'normalize.css/normalize.css';
 import './_assets/globals.css';
 
 export const metadata: Metadata = {
-  title: 'Your Application Title Goes Here',
-  description: 'Your application description goes here',
+  title: 'Maggoo',
+  description: 'Maggoo Land is a community driven decentralized P2E gaming platform with upgradable NFT cult characters called Maggoo.',
 };
 
 export default function RootLayout({ children }: PropsWithChildren) {
