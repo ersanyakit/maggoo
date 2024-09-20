@@ -15,7 +15,7 @@ export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => (
                 <Image
                     src={"/eggs/egg_default.png"}
                     alt="egg"
-                    width={215}
+                    width={150}
                     height={260}
                     className="bg-transparent"
                 />
@@ -38,7 +38,7 @@ export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => (
                 <Image
                     src={"/boxes/box_default.png"}
                     alt="boxes"
-                    width={200}
+                    width={150}
                     height={260}
                     className="bg-transparent"
                 />
