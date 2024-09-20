@@ -50,7 +50,7 @@ export default function TONConnectPage() {
   } = wallet;
 
   return (
-<div className=''>
+<div className='hidden'>
 <List>
       {'imageUrl' in wallet && (
         <>
