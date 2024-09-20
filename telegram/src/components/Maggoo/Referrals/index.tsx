@@ -2,6 +2,7 @@ import { Avatar, Button, Link, ScrollShadow, User } from "@nextui-org/react";
 import { useInitData, useLaunchParams } from "@telegram-apps/sdk-react";
 import { FC, useMemo } from "react";
 import { initUtils } from '@telegram-apps/sdk';
+import { getUserAvatarUrl } from "@/app/constants";
 
 export const Referrals: FC<any> = ({ color, className, ...rest }) => {
     const lp = useLaunchParams();
@@ -26,7 +27,7 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
                         </Link>
                       )}
                     avatarProps={{
-                        src: "https://i.pravatar.cc/150?u=a04258114e29026702d"
+                        src: getUserAvatarUrl(referralItem.userId)
                     }}
                     />
             </div>
@@ -57,18 +58,18 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
             <ScrollShadow hideScrollBar className="w-full h-[400px]">
 
                 <div className="w-full flex flex-col gap-2" style={{ color }}>
-                    <ReferralCard name={"Ersan"} />
-                    <ReferralCard name={"Ersan"} />
-                    <ReferralCard name={"Ersan"} />
-                    <ReferralCard name={"Ersan"} />
-                    <ReferralCard name={"Ersan"} />
-                    <ReferralCard name={"Ersan"} />
-                    <ReferralCard name={"Ersan"} />
-                    <ReferralCard name={"Ersan"} />
-                    <ReferralCard name={"Ersan"} />
-                    <ReferralCard name={"Ersan"} />
-                    <ReferralCard name={"Ersan"} />
-                    <ReferralCard name={"Ersan"} />
+                    <ReferralCard name={"Ersan"} userId={1} />
+                    <ReferralCard name={"Ersan"} userId={2}/>
+                    <ReferralCard name={"Ersan"} userId={3}/>
+                    <ReferralCard name={"Ersan"} userId={4}/>
+                    <ReferralCard name={"Ersan"} userId={5}/>
+                    <ReferralCard name={"Ersan"} userId={6} />
+                    <ReferralCard name={"Ersan"} userId={7}/>
+                    <ReferralCard name={"Ersan"} userId={8}/>
+                    <ReferralCard name={"Ersan"} userId={9}/>
+                    <ReferralCard name={"Ersan"} userId={10}/>
+                    <ReferralCard name={"Ersan"} userId={11}/>
+                    <ReferralCard name={"Ersan"} userId={12}/>
                 </div>
             </ScrollShadow>
             <div className="w-full flex flex-row gap-2 rounded-lg">
