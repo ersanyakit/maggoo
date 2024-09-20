@@ -52,7 +52,7 @@ export default function Home() {
               <span translate='no' className="material-symbols-outlined">
               stadia_controller
               </span>
-              <span className='text-xs'>Play</span>
+              <span className='text-xs'>Eggs & Boxes</span>
 
             </div>
           }>
