@@ -8,6 +8,7 @@ import tonSvg from './_assets/ton.svg';
 import { Intro } from '@/components/Maggoo/Intro';
 import { Tab, Tabs } from "@nextui-org/react";
 import { Header } from '@/components/Header';
+import { EggsAndBoxes } from '@/components/Maggoo/EggsBoxes';
 
 export default function Home() {
   return (
@@ -58,8 +59,8 @@ export default function Home() {
 
               </div>
             }>
-            <div className='w-screen h-[calc(100vh-180px)]'>
-              upgrade
+            <div className='w-screen h-[calc(100vh-180px)]  pt-[150px] p-2'>
+              <EggsAndBoxes/>
             </div>
 
           </Tab>
