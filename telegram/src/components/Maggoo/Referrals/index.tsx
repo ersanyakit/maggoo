@@ -1,7 +1,16 @@
 import { Avatar, Button, Link, ScrollShadow, User } from "@nextui-org/react";
-import { FC } from "react";
+import { useInitData, useLaunchParams } from "@telegram-apps/sdk-react";
+import { FC, useMemo } from "react";
+import { initUtils } from '@telegram-apps/sdk';
 
 export const Referrals: FC<any> = ({ color, className, ...rest }) => {
+    const lp = useLaunchParams();
+    const initData = useInitData();
+    const utils = initUtils();
+
+    const userRows = useMemo<any | undefined>(() => {
+        return initData && initData.user ? initData.user : undefined;
+      }, [initData]);
 
     const ReferralCard = (referralItem: any) => {
         return (
@@ -23,6 +32,24 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
             </div>
         );
     };
+
+
+    const handleCopyToClipboard = async () => {
+        let text = `https://t.me/maggoobot?start=${userRows?.id?.toString()}`    
+        try {
+            await navigator.clipboard.writeText(text);
+            //setCopySuccess("Text copied to clipboard!");
+          } catch (err) {
+            //setCopySuccess("Failed to copy text.");
+          }
+    }
+
+    const handleShare = () => {
+        let text = `https://t.me/maggoobot/maggooland?start=${userRows?.id?.toString()}`    
+        let message = "Play with me and become a Maggoo! A real way to earn money 💵 Plus, get 10k bonus coins to kickstart your Maggoo journey!"
+        utils.shareURL(text, message);
+
+    }
 
     return (
         <div className={`w-full h-full flex gap-2 flex-col ${className}`} {...rest}>
@@ -46,11 +73,15 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
             </ScrollShadow>
             <div className="w-full flex flex-row gap-2 rounded-lg">
 
-                <Button className=" btn-primary  w-full py-6 text-2xl">
+                <Button onClick={()=>{
+                    handleShare()
+                }} className=" btn-primary  w-full py-6 text-2xl">
                     Invite Friends
                 </Button>
 
-                <Button isIconOnly className=" btn-primary p-6 text-2xl">
+                <Button onClick={()=>{
+                    handleCopyToClipboard()
+                }} isIconOnly className=" btn-primary p-6 text-2xl">
 
                     <span translate="no" className="material-symbols-outlined">
                         content_copy
