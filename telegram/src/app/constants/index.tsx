@@ -1,4 +1,5 @@
 export const DEPOSIT_ADDRESS = "UQARMY0cdifWNXid-CxBUn-S-gjmx8AhEZ8BLZZpld1jLJLC"
+export const DEPOSIT_RECEIVER_ADDRESS = "0:11318d1c7627d635789df82c41527f92fa08e6c7c021119f012d966995dd632c"
 export const DEFAULT_MAGGOO_URL = "https://raw.githubusercontent.com/ersanyakit/maggoo/refs/heads/main/maggoo-app/public/assets/%s/Worm_%s.png"
 
 export const getUserAvatarUrl = (userId: number) => {
