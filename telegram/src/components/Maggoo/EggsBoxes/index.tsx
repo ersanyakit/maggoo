@@ -2,7 +2,9 @@ import { FC } from "react";
 import Image from "next/image";
 import { Button, Card, CardBody, Tab, Tabs } from "@nextui-org/react";
 
-export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => (
+export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => {
+
+    return (
     <>
   <Tabs classNames={{
     tabList:"backdrop-blur-sm bg-white/10",
@@ -58,4 +60,4 @@ export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => (
 
       
     </>
-)
+)}
