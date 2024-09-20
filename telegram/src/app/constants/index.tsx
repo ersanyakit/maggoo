@@ -1,0 +1,1 @@
+export const DEPOSIT_ADDRESS = "UQARMY0cdifWNXid-CxBUn-S-gjmx8AhEZ8BLZZpld1jLJLC"
