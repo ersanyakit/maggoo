@@ -50,7 +50,8 @@ export default function TONConnectPage() {
   } = wallet;
 
   return (
-    <List>
+<div className=''>
+<List>
       {'imageUrl' in wallet && (
         <>
           <Section>
@@ -96,5 +97,6 @@ export default function TONConnectPage() {
         ]}
       />
     </List>
+    </div>
   );
 };
