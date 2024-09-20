@@ -12,15 +12,15 @@ export default function Home() {
   return (
     <>
 
-      <div className="w-screen h-screen fixed">
-        <Tabs
+<div className="flex fixed flex-wrap gap-4">
+<Tabs
           fullWidth
           color="warning"
-          variant='bordered'
+          variant='light'
           placement='bottom'
           className='w-screen h-screen'
           classNames={{
-            tabList: "gap-6 w-full relative rounded-none p-0 border-b border-divider",
+            tabList: "gap-2 w-full relative rounded-none  border-divider",
 
       
             tab:"h-50 m-2"
@@ -34,7 +34,7 @@ export default function Home() {
               <span translate='no' className="material-symbols-outlined">
                 diversity_1
               </span>
-              <span>Referrals</span>
+              <span className='text-xs'>Referrals</span>
 
             </div>
           }>
@@ -52,7 +52,7 @@ export default function Home() {
               <span translate='no' className="material-symbols-outlined">
               stadia_controller
               </span>
-              <span>Eggs & Boxes</span>
+              <span className='text-xs'>Play</span>
 
             </div>
           }>
@@ -67,7 +67,7 @@ export default function Home() {
               <span translate='no' className="material-symbols-outlined">
               storefront
               </span>
-              <span>Marketplace</span>
+              <span>Market</span>
 
             </div>
           }>
