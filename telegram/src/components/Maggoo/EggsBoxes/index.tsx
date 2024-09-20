@@ -4,11 +4,14 @@ import { Button, Card, CardBody, Tab, Tabs } from "@nextui-org/react";
 
 export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => (
     <>
-  <Tabs fullWidth aria-label="Options">
-        <Tab key="photos" title="MAGGOO EGG">
-          <Card>
+  <Tabs classNames={{
+    tabList:"backdrop-blur-sm bg-white/10",
+    tabContent:"text-white"
+  }} fullWidth aria-label="Options">
+        <Tab key="maggooEgg" title="MAGGOO EGG">
+          <Card className="backdrop-blur-sm bg-transparent">
             <CardBody>
-            <div className="w-full h-full p-2 flex-col border-2 border-black flex justify-center items-center rounded-xl">
+            <div className="w-full h-full p-2 flex-col border-2 border-white/30 flex justify-center items-center rounded-xl">
                 <Image
                     src={"/eggs/egg_default.png"}
                     alt="egg"
@@ -29,9 +32,9 @@ export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => (
           </Card>  
         </Tab>
         <Tab key="music" title="MYSTERYBOX">
-          <Card>
-            <CardBody>
-            <div className="w-full h-full p-2 flex-col border-2 border-black flex justify-center items-center rounded-xl">
+        <Card className="backdrop-blur-sm bg-transparent">
+        <CardBody>
+            <div className="w-full h-full p-2 flex-col border-2 border-white/30 flex justify-center items-center rounded-xl">
                 <Image
                     src={"/boxes/box_default.png"}
                     alt="boxes"
