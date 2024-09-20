@@ -3,5 +3,17 @@
 @tailwind utilities;
 
 body {
-  background: var(--tg-theme-secondary-bg-color, white);
+  font-weight: 400;
+  font-style: normal;
+  background-color: #4a249f !important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url(/illustrations/home-clouds.webp), url(/illustrations/home-section-bg.webp); /* Sıra tersine çevrildi */
+  background-position: bottom center, top center;
+  background-repeat: no-repeat, no-repeat;
+  background-size: 100% 250px, 100% auto;
+  min-height: 100vh;
 }

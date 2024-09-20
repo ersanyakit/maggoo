@@ -7,13 +7,15 @@ import { Link } from '@/components/Link/Link';
 import tonSvg from './_assets/ton.svg';
 import { Intro } from '@/components/Maggoo/Intro';
 import { Tab, Tabs } from "@nextui-org/react";
+import { Header } from '@/components/Header';
 
 export default function Home() {
   return (
     <>
-
-<div className="flex fixed flex-wrap gap-4">
-<Tabs
+    <div className='main'>
+      <Header/>
+      <div className="flex fixed flex-wrap gap-4">
+        <Tabs
           fullWidth
           color="warning"
           variant='light'
@@ -22,8 +24,8 @@ export default function Home() {
           classNames={{
             tabList: "gap-2 w-full relative rounded-none  border-divider",
 
-      
-            tab:"h-50 m-2"
+
+            tab: "h-50 m-2"
           }}
           size="sm"
           radius='lg'
@@ -38,7 +40,7 @@ export default function Home() {
 
             </div>
           }>
-                 <div className='w-screen h-[calc(100vh-110px)] bg-red-200'>
+            <div className='w-screen h-[calc(100vh-180px)]'>
               upgrade
             </div>
 
@@ -46,17 +48,17 @@ export default function Home() {
 
           </Tab>
 
-          <Tab key="eggsandboxes" 
-          title={
-            <div className='w-full flex flex-col gap-2 items-center justify-center'>
-              <span translate='no' className="material-symbols-outlined">
-              stadia_controller
-              </span>
-              <span className='text-xs'>Eggs & Boxes</span>
+          <Tab key="eggsandboxes"
+            title={
+              <div className='w-full flex flex-col gap-2 items-center justify-center'>
+                <span translate='no' className="material-symbols-outlined">
+                  stadia_controller
+                </span>
+                <span className='text-xs'>Eggs & Boxes</span>
 
-            </div>
-          }>
-         <div className='w-screen h-[calc(100vh-110px)] bg-red-200'>
+              </div>
+            }>
+            <div className='w-screen h-[calc(100vh-180px)]'>
               upgrade
             </div>
 
@@ -65,13 +67,13 @@ export default function Home() {
           <Tab key="marketplace" title={
             <div className='w-full flex flex-col gap-2 items-center justify-center'>
               <span translate='no' className="material-symbols-outlined">
-              storefront
+                storefront
               </span>
               <span>Market</span>
 
             </div>
           }>
-         <div className='w-screen h-[calc(100vh-110px)] bg-red-200'>
+            <div className='w-screen h-[calc(100vh-180px)]'>
               upgrade
             </div>
 
@@ -81,13 +83,13 @@ export default function Home() {
           <Tab key="upgrade" title={
             <div className='w-full flex flex-col gap-2 items-center justify-center'>
               <span translate='no' className="material-symbols-outlined">
-              extension
+                extension
               </span>
               <span>Upgrade</span>
 
             </div>
           }>
-            <div className='w-screen h-[calc(100vh-110px)] bg-red-200'>
+            <div className='w-screen h-[calc(100vh-180px)]'>
               upgrade
             </div>
 
@@ -97,54 +99,57 @@ export default function Home() {
           <Tab key="wallet" title={
             <div className='w-full flex flex-col gap-2 items-center justify-center'>
               <span translate='no' className="material-symbols-outlined">
-              account_balance_wallet
+                account_balance_wallet
               </span>
               <span>Wallet</span>
 
             </div>
           }>
 
-<div className='w-screen h-[calc(100vh-110px)] bg-red-200'>
-<List>
-              <Section
-                header='Features'
-                footer='You can use these pages to learn more about features, provided by Telegram Mini Apps and other useful projects'
-              >
-                <Link href='/ton-connect'>
-                  <Cell
-                    before={<Image src={tonSvg.src} style={{ backgroundColor: '#007AFF' }} />}
-                    subtitle='Connect your TON wallet'
-                  >
-                    TON Connect
-                  </Cell>
-                </Link>
-              </Section>
-              <Section
-                header='Application Launch Data'
-                footer='These pages help developer to learn more about current launch information'
-              >
-                <Link href='/init-data'>
-                  <Cell subtitle='User data, chat information, technical data'>Init Data</Cell>
-                </Link>
-                <Link href='/launch-params'>
-                  <Cell subtitle='Platform identifier, Mini Apps version, etc.'>Launch Parameters</Cell>
-                </Link>
-                <Link href='/theme-params'>
-                  <Cell subtitle='Telegram application palette information'>Theme Parameters</Cell>
-                </Link>
-              </Section>
-            </List>
+            <div className='w-screen h-[calc(100vh-180px)]'>
+              <List>
+                <Section
+                  header='Features'
+                  footer='You can use these pages to learn more about features, provided by Telegram Mini Apps and other useful projects'
+                >
+                  <Link href='/ton-connect'>
+                    <Cell
+                      before={<Image src={tonSvg.src} style={{ backgroundColor: '#007AFF' }} />}
+                      subtitle='Connect your TON wallet'
+                    >
+                      TON Connect
+                    </Cell>
+                  </Link>
+                </Section>
+                <Section
+                  header='Application Launch Data'
+                  footer='These pages help developer to learn more about current launch information'
+                >
+                  <Link href='/init-data'>
+                    <Cell subtitle='User data, chat information, technical data'>Init Data</Cell>
+                  </Link>
+                  <Link href='/launch-params'>
+                    <Cell subtitle='Platform identifier, Mini Apps version, etc.'>Launch Parameters</Cell>
+                  </Link>
+                  <Link href='/theme-params'>
+                    <Cell subtitle='Telegram application palette information'>Theme Parameters</Cell>
+                  </Link>
+                </Section>
+              </List>
             </div>
-       
 
-  
-   
+
+
+
           </Tab>
         </Tabs>
       </div>
-
-
-
+      
+   
+    </div>
+    <div className='footer'>
+    
+    </div>
 
     </>
   );
