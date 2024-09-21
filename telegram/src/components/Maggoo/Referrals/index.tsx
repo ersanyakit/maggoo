@@ -43,7 +43,7 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
 
 
     const handleCopyToClipboard = async () => {
-        let text = `https://t.me/maggoobot/maggooland?startapp=${userRows?.id?.toString()}&startapp=${userRows?.id?.toString()}`    
+        let text = `https://t.me/maggoobot/maggooland?startapp=${userRows?.id?.toString()}&startApp=${userRows?.id?.toString()}`    
         try {
             await navigator.clipboard.writeText(text);
             //setCopySuccess("Text copied to clipboard!");
@@ -53,7 +53,7 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
     }
 
     const handleShare = () => {
-        let text = `https://t.me/maggoobot/maggooland?startapp=${userRows?.id?.toString()}&startapp=${userRows?.id?.toString()}`    
+        let text = `https://t.me/maggoobot/maggooland?startapp=${userRows?.id?.toString()}&startApp=${userRows?.id?.toString()}`    
         let message = "Play with me and become a Maggoo! A real way to earn money 💵 Plus, get 10k bonus coins to kickstart your Maggoo journey!"
         utils.shareURL(text, message);
 
