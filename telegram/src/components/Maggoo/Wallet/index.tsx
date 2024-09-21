@@ -45,7 +45,7 @@ export const Wallet: FC<any> = ({ color, className, ...rest }) => {
                                     {
                                         userData && userData.balanceInfo.map((item: any, index: number) => (
 
-                                            <div className="w-full overflow-none w-[185px] h-[260px]">
+                                            <div key={`magggoo${index}`} className="w-full overflow-none w-[185px] h-[260px]">
                                                 <Maggoo tokenId={item.token_identifier} isMarketItem={false} />
                                             </div>
                                         ))}
