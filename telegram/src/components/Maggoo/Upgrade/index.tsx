@@ -9,15 +9,15 @@ export const Update: FC<any> = ({ color, className, ...rest }) => {
     const lp = useLaunchParams();
     const initData = useInitData();
     const utils = initUtils();
-    const { postData } = useGlobalState(); // Global state'ten veriyi al
+    const { userData } = useGlobalState(); // Global state'ten veriyi al
 
     const userRows = useMemo<any | undefined>(() => {
         return initData && initData.user ? initData.user : undefined;
       }, [initData]);
 
     useEffect(()=>{
-        console.log(postData)
-    },[postData])
+        console.log(userData)
+    },[userData])
    
 
 
