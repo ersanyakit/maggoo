@@ -43,7 +43,7 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
         useEffect(()=>{
             if(data){
                 
-                console.log("gelenData",data?.ReferralMintID)
+                console.log("gelenData",(data as any).ReferralMintID)
 
             }
 
