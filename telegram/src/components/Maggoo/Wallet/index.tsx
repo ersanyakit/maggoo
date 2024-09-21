@@ -39,7 +39,7 @@ export const Wallet: FC<any> = ({ color, className, ...rest }) => {
 
 
                       
-                            <ScrollShadow hideScrollBar className="w-full h-[200px] grid grid-cols-2 gap-2">
+                        <ScrollShadow hideScrollBar className="w-full h-[400px]">
 
 
                                     {
