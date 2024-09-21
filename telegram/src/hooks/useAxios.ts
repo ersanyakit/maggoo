@@ -19,7 +19,7 @@ const useAxiosPost = <T>(url: string, initialData: T | {} = {}): UseAxiosPostRes
     setError(null);
 
     try {
-      const response: AxiosResponse<T> = await axios.post(`${DEFAULT_API_URL}/${url}`, postData);
+      const response: AxiosResponse<T> = await axios.post(`${DEFAULT_API_URL}${url}`, postData);
       setData(response.data);
     } catch (err) {
       setError(err);
