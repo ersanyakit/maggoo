@@ -25,6 +25,9 @@ export default function InitDataPage() {
   const initDataRaw = useLaunchParams().initDataRaw;
   const initData = useInitData();
 
+  console.log("raw",initDataRaw)
+  console.log("initData",initData)
+
   const initDataRows = useMemo<DisplayDataRow[] | undefined>(() => {
     if (!initData || !initDataRaw) {
       return;
