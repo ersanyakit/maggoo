@@ -31,7 +31,6 @@ const Maggoo = (props: { tokenId: any; isMarketItem: boolean }) => {
     return (
       <>
         <div className="w-full h-full relative items-center justify-center flex">
-            asdadasd
           <Image
             removeWrapper
             src={getImageName(
@@ -87,7 +86,7 @@ const Maggoo = (props: { tokenId: any; isMarketItem: boolean }) => {
             removeWrapper
             src={getImageName(
               false,
-              getCharacterId(BigInt(props.character.tokenId)),
+              getCharacterId(BigInt(props.tokenId)),
               WearableSlot.Worm
             )}
             width={185}
@@ -99,8 +98,8 @@ const Maggoo = (props: { tokenId: any; isMarketItem: boolean }) => {
             removeWrapper
             src={getImageName(
               false,
-              getCharacterId(BigInt(props.character.tokenId)),
-              getWearableId(BigInt(props.character.tokenId))
+              getCharacterId(BigInt(props.tokenId)),
+              getWearableId(BigInt(props.tokenId))
             )}
             width={185}
             height={260}
