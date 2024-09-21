@@ -6,6 +6,7 @@ import { Root } from '@/components/Root/Root';
 import '@telegram-apps/telegram-ui/dist/styles.css';
 import 'normalize.css/normalize.css';
 import './_assets/globals.css';
+import { GlobalStateProvider } from '@/context/GlobalStateContext'; // Global state sağlayıcısını içe aktar
 
 export const metadata: Metadata = {
   title: 'Maggoo',
@@ -21,9 +22,11 @@ export default function RootLayout({ children }: PropsWithChildren) {
       <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
       </head>
     <body>
+    <GlobalStateProvider>
       <Root>
         {children}
       </Root>
+      </GlobalStateProvider>
     </body>
     </html>
   );

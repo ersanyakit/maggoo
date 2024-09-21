@@ -15,12 +15,14 @@ import { useInitData, useLaunchParams, useUtils } from '@telegram-apps/sdk-react
 import { Wallet } from '@/components/Maggoo/Wallet';
 import { useEffect, useMemo } from 'react';
 import useAxiosPost from '@/hooks/useAxios';
+import { useGlobalState } from '@/context/GlobalStateContext';
 
 export default function Home() {
 
   const wallet = useTonWallet();
   const utils = useUtils();
   const { data, error, loading, postData } = useAxiosPost('/maggoo/sync');
+  const { setPostData } = useGlobalState(); // Global state'e erişim
 
 
   const lp = useLaunchParams();
@@ -42,6 +44,12 @@ export default function Home() {
     }
   }, [userRows, lp.startParam]); // `userRows` veya `lp.startParam` değiştiğinde POST isteği yapılır
 
+  useEffect(()=>{
+    console.log("loading",loading)
+    console.log(data)
+    setPostData(data);
+
+  },[loading])
   
   return (
     <>

@@ -1,21 +1,27 @@
 import { Avatar, Button, Link, ScrollShadow, User } from "@nextui-org/react";
 import { useInitData, useLaunchParams } from "@telegram-apps/sdk-react";
-import { FC, useMemo } from "react";
+import { FC, useEffect, useMemo } from "react";
 import { initUtils } from '@telegram-apps/sdk';
 import { getUserAvatarUrl } from "@/app/constants";
+import { useGlobalState } from "@/context/GlobalStateContext";
 
 export const Referrals: FC<any> = ({ color, className, ...rest }) => {
     const lp = useLaunchParams();
     const initData = useInitData();
     const utils = initUtils();
+    const { postData } = useGlobalState(); // Global state'ten veriyi al
 
     const userRows = useMemo<any | undefined>(() => {
         return initData && initData.user ? initData.user : undefined;
       }, [initData]);
 
+    useEffect(()=>{
+        console.log(postData)
+    },[postData])
     const ReferralCard = (referralItem: any) => {
         return (
-            <div className="rounded-lg text-primary-500 backdrop-blur-sm  bg-white/30 p-2 border border-2 flex items-center">
+            <div className="w-full rounded-lg p-2  backdrop-blur-sm  bg-transparent">
+            <div className="rounded-lg text-primary-500 p-2 border border-2 border-white/30 flex items-center">
               <User   
                     classNames={{
                         base:"text"
@@ -23,13 +29,14 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
                     name={referralItem.name}
                     description={(
                         <Link className="text-primary-300" href="https://twitter.com/ersanyakit" size="sm" isExternal>
-                          @ersanyakit
+                          @{referralItem.referral.UserName}
                         </Link>
                       )}
                     avatarProps={{
                         src: getUserAvatarUrl(referralItem.userId)
                     }}
                     />
+            </div>
             </div>
         );
     };
@@ -58,18 +65,15 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
             <ScrollShadow hideScrollBar className="w-full h-[400px]">
 
                 <div className="w-full flex flex-col gap-2" style={{ color }}>
-                    <ReferralCard name={"Ersan"} userId={1} />
-                    <ReferralCard name={"Ersan"} userId={2}/>
-                    <ReferralCard name={"Ersan"} userId={3}/>
-                    <ReferralCard name={"Ersan"} userId={4}/>
-                    <ReferralCard name={"Ersan"} userId={5}/>
-                    <ReferralCard name={"Ersan"} userId={6} />
-                    <ReferralCard name={"Ersan"} userId={7}/>
-                    <ReferralCard name={"Ersan"} userId={8}/>
-                    <ReferralCard name={"Ersan"} userId={9}/>
-                    <ReferralCard name={"Ersan"} userId={10}/>
-                    <ReferralCard name={"Ersan"} userId={11}/>
-                    <ReferralCard name={"Ersan"} userId={12}/>
+                {postData.referrals.map((referral:any) => (
+                    <ReferralCard
+                    key={referral.ID}
+                    name={referral.UserName}
+                    userId={referral.UserID}
+                    referral={referral}
+                    />
+                ))}
+                 
                 </div>
             </ScrollShadow>
             <div className="w-full flex flex-row gap-2 rounded-lg">
