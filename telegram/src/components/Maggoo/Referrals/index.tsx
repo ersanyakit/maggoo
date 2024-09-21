@@ -2,7 +2,7 @@ import { Avatar, Button, Image, Link, Modal, ModalBody, ModalContent, ModalFoote
 import { useInitData, useLaunchParams } from "@telegram-apps/sdk-react";
 import { FC, useEffect, useMemo, useState } from "react";
 import { initUtils } from '@telegram-apps/sdk';
-import { getUserAvatarUrl } from "@/app/constants";
+import { generateImage, getUserAvatarUrl } from "@/app/constants";
 import { useGlobalState } from "@/context/GlobalStateContext";
 import useAxiosPost from "@/hooks/useAxios";
 
@@ -10,16 +10,14 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
     const lp = useLaunchParams();
     const initData = useInitData();
     const utils = initUtils();
-    const { postData } = useGlobalState(); // Global state'ten veriyi al
+    const { userData } = useGlobalState(); // Global state'ten veriyi al
 
 
     const userRows = useMemo<any | undefined>(() => {
         return initData && initData.user ? initData.user : undefined;
     }, [initData]);
 
-    useEffect(() => {
-        console.log(postData)
-    }, [postData])
+
 
 
     const ReferralCard = (referralItem: any) => {
@@ -36,9 +34,20 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
                 user: refInfo.referral,
             };
             onOpen()
-            await postData(userInfo); // userInfo'yu sunucuya gönder
-
+            await postData(userInfo).then(()=>{
+                referralItem.referral.IsRefClaimed = true
+            }) 
+           
         }
+     
+        useEffect(()=>{
+            if(data){
+                
+                console.log("gelenData",data?.ReferralMintID)
+
+            }
+
+        },[data])
 
         return (
             <>
@@ -62,17 +71,26 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
                                                     wrapper: "text-white"
                                                 }} className="text-white" label="Claiming... Please Wait!" color="warning" />
                                             ) : (
-                                                <div className="w-full flex items-center justify-center">
-                                                    <Image
-                                                        loading="eager"
-                                                        src="/eggs/egg_open.png"
-                                                        alt="egg"
-                                                        width={400}
-                                                        height={400}
-                                                        className="bg-transparent"
-                                                    />
-
-                                                </div>
+                                                <div className="w-full flex items-center justify-center relative">
+                                                <Image
+                                                    loading="eager"
+                                                    src="/eggs/egg_open.png"
+                                                    alt="egg"
+                                                    width={400}
+                                                    height={400}
+                                                    className="bg-transparent"
+                                                />
+                                            
+                                                <Image
+                                                removeWrapper
+                                                    loading="eager"
+                                                    src={generateImage(data?.ReferralMintID, "Body")}
+                                                    alt="body"
+                                                    width={200} // İstediğiniz boyuta göre ayarlayın
+                                                    height={400} // İstediğiniz boyuta göre ayarlayın
+                                                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-transparent"
+                                                />
+                                            </div>
                                             )
                                         }
                                     </div>
@@ -142,7 +160,7 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
             <ScrollShadow hideScrollBar className="w-full h-[400px]">
 
                 <div className="w-full flex flex-col gap-2" style={{ color }}>
-                    {postData && postData.referrals.map((referral: any) => (
+                    {userData && userData.referrals.map((referral: any) => (
                         <ReferralCard
                             key={referral.ID}
                             name={referral.UserName}

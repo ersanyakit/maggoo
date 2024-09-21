@@ -22,7 +22,7 @@ export default function Home() {
   const wallet = useTonWallet();
   const utils = useUtils();
   const { data, error, loading, postData } = useAxiosPost('/maggoo/sync');
-  const { setPostData } = useGlobalState(); // Global state'e erişim
+  const { setUserData } = useGlobalState(); // Global state'e erişim
 
 
   const lp = useLaunchParams();
@@ -47,7 +47,7 @@ export default function Home() {
   useEffect(()=>{
     console.log("loading",loading)
     console.log(data)
-    setPostData(data);
+    setUserData(data);
 
   },[loading])
   
