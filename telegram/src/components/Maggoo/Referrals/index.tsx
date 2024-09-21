@@ -80,11 +80,10 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
                                                     height={400}
                                                     className="bg-transparent"
                                                 />
-                                            
                                                 <Image
                                                 removeWrapper
                                                     loading="eager"
-                                                    src={generateImage(data?.ReferralMintID, "Body")}
+                                                    src={generateImage(((data as any).ReferralMintID ?? 1), "Body")}
                                                     alt="body"
                                                     width={200} // İstediğiniz boyuta göre ayarlayın
                                                     height={400} // İstediğiniz boyuta göre ayarlayın
