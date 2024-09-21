@@ -11,13 +11,42 @@ import { Header } from '@/components/Header';
 import { EggsAndBoxes } from '@/components/Maggoo/EggsBoxes';
 import { Referrals } from '@/components/Maggoo/Referrals';
 import { useTonWallet } from '@tonconnect/ui-react';
-import { useUtils } from '@telegram-apps/sdk-react';
+import { useInitData, useLaunchParams, useUtils } from '@telegram-apps/sdk-react';
 import { Wallet } from '@/components/Maggoo/Wallet';
+import { useEffect, useMemo } from 'react';
+import useAxiosPost from '@/hooks/useAxios';
+
+interface UserInfo {
+  userRows: any; // Burada userRows tipini belirtebilirsiniz.
+  startParam: string;
+}
 
 export default function Home() {
 
   const wallet = useTonWallet();
   const utils = useUtils();
+  const { data, error, loading, postData } = useAxiosPost('/maggoo/sync');
+
+
+  const lp = useLaunchParams();
+  const initData = useInitData();
+
+  const userRows = useMemo<any | undefined>(() => {
+      return initData && initData.user ? initData : undefined;
+  }, [initData]);
+
+  useEffect(() => {
+    if (userRows) {
+      const userInfo: UserInfo = {
+        userRows,
+        startParam: lp.startParam || "",
+      };
+
+      console.log("Sending userInfo to server:", userInfo);
+      postData(userInfo); // userInfo'yu sunucuya gönder
+    }
+  }, [userRows, lp.startParam]); // `userRows` veya `lp.startParam` değiştiğinde POST isteği yapılır
+
   
   return (
     <>
