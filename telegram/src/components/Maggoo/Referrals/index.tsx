@@ -10,8 +10,7 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
     const initData = useInitData();
     const utils = initUtils();
     const { postData } = useGlobalState(); // Global state'ten veriyi al
-    const {isOpen, onOpen, onOpenChange} = useDisclosure();
-    const [modalPlacement, setModalPlacement] = useState("auto");
+
 
     const userRows = useMemo<any | undefined>(() => {
         return initData && initData.user ? initData.user : undefined;
@@ -21,7 +20,41 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
         console.log(postData)
     },[postData])
     const ReferralCard = (referralItem: any) => {
+
+        const {isOpen, onOpen, onOpenChange} = useDisclosure();
+        const [modalPlacement, setModalPlacement] = useState("auto");
+        
+        const handleClaim = async(refInfo:any) => {
+            console.log("handleClaim:refInfo",refInfo.referral)
+            onOpen()
+        }
+
         return (
+            <>
+            <Modal 
+        isOpen={isOpen} 
+        placement={"auto"}
+        onOpenChange={onOpenChange} 
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">Claim</ModalHeader>
+              <ModalBody>
+                <div className="w-full h-full p-2 gap-2 flex items-center justify-center">
+                    <Spinner label="Claiming... Please Wait!" color="warning" />
+                </div>
+              </ModalBody>
+              <ModalFooter>
+                <Button className="btn-primary w-full"  onPress={onClose}>
+                  Close
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+      
             <div className="w-full rounded-lg p-2  backdrop-blur-sm  bg-transparent">
             <div className="rounded-lg text-primary-500 p-2 border border-2 border-white/30 flex items-center justify-between">
               <User   
@@ -47,13 +80,11 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
                 </Button>
             </div>
             </div>
+            </>
         );
     };
 
-    const handleClaim = async(refInfo:any) => {
-        console.log("handleClaim:refInfo",refInfo.referral)
-        onOpen()
-    }
+ 
 
 
     const handleCopyToClipboard = async () => {
@@ -75,31 +106,6 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
 
     return (
         <div className={`w-full h-full flex gap-2 flex-col ${className}`} {...rest}>
-
-<Modal 
-        isOpen={isOpen} 
-        placement={"auto"}
-        onOpenChange={onOpenChange} 
-      >
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">Claim</ModalHeader>
-              <ModalBody>
-                <div className="w-full h-full p-2 gap-2 flex items-center justify-center">
-                    <Spinner label="Claiming... Please Wait!" color="warning" />
-                </div>
-              </ModalBody>
-              <ModalFooter>
-                <Button className="btn-primary w-full"  onPress={onClose}>
-                  Close
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
-
 
             <ScrollShadow hideScrollBar className="w-full h-[400px]">
 
