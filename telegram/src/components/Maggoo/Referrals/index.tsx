@@ -26,10 +26,11 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
                     classNames={{
                         base:"text"
                     }}
-                    name={referralItem.name}
+                    name={referralItem.referral.NickName}
                     description={(
-                        <Link className="text-primary-300" href="https://twitter.com/ersanyakit" size="sm" isExternal>
-                          @{referralItem.referral.UserName}
+                        <Link className="text-primary-300" 
+                        href={`https://t.me/${referralItem.referral.UserName ? referralItem.referral.UserName : "maggooio"} ` } size="sm" isExternal>
+                          @{referralItem.referral.UserName ? referralItem.referral.UserName : "maggooio"}
                         </Link>
                       )}
                     avatarProps={{
@@ -37,12 +38,10 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
                     }}
                     />
 
-               
-
-        <Button isDisabled onClick={()=>{
+        <Button isDisabled={referralItem.IsRefClaimed} onClick={()=>{
                     handleClaim(referralItem)
-                }} className=" btn-primary py-2 text-lg">
-                    Claim
+                }} className={referralItem.IsRefClaimed ? "btn-claimed" : "btn-primary" + "  py-2 text-lg"}>
+                    {referralItem.IsRefClaimed ? "Claimed" : "Claim"}
                 </Button>
             </div>
             </div>
@@ -50,7 +49,7 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
     };
 
     const handleClaim = async(refInfo:any) => {
-        console.log("handleClaim:refInfo",refInfo)
+        console.log("handleClaim:refInfo",refInfo.referral)
     }
 
 
@@ -82,6 +81,7 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
                     key={referral.ID}
                     name={referral.UserName}
                     userId={referral.UserID}
+                    nickName={referral.NickName}
                     referral={referral}
                     />
                 ))}
