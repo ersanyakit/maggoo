@@ -1,6 +1,6 @@
-import { Avatar, Button, Link, ScrollShadow, User } from "@nextui-org/react";
+import { Avatar, Button, Link, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ScrollShadow, Spinner, useDisclosure, User } from "@nextui-org/react";
 import { useInitData, useLaunchParams } from "@telegram-apps/sdk-react";
-import { FC, useEffect, useMemo } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import { initUtils } from '@telegram-apps/sdk';
 import { getUserAvatarUrl } from "@/app/constants";
 import { useGlobalState } from "@/context/GlobalStateContext";
@@ -10,6 +10,8 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
     const initData = useInitData();
     const utils = initUtils();
     const { postData } = useGlobalState(); // Global state'ten veriyi al
+    const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const [modalPlacement, setModalPlacement] = useState("auto");
 
     const userRows = useMemo<any | undefined>(() => {
         return initData && initData.user ? initData.user : undefined;
@@ -50,6 +52,7 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
 
     const handleClaim = async(refInfo:any) => {
         console.log("handleClaim:refInfo",refInfo.referral)
+        onOpen()
     }
 
 
@@ -72,6 +75,31 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
 
     return (
         <div className={`w-full h-full flex gap-2 flex-col ${className}`} {...rest}>
+
+<Modal 
+        isOpen={isOpen} 
+        placement={"auto"}
+        onOpenChange={onOpenChange} 
+      >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">Claim</ModalHeader>
+              <ModalBody>
+                <div className="w-full h-full p-2 gap-2 flex items-center justify-center">
+                    <Spinner label="Claiming... Please Wait!" color="warning" />
+                </div>
+              </ModalBody>
+              <ModalFooter>
+                <Button className="btn-primary w-full"  onPress={onClose}>
+                  Close
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+
 
             <ScrollShadow hideScrollBar className="w-full h-[400px]">
 
