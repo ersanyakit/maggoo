@@ -1,9 +1,10 @@
-import { Avatar, Button, Link, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ScrollShadow, Spinner, useDisclosure, User } from "@nextui-org/react";
+import { Avatar, Button,Image, Link, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ScrollShadow, Spinner, useDisclosure, User } from "@nextui-org/react";
 import { useInitData, useLaunchParams } from "@telegram-apps/sdk-react";
 import { FC, useEffect, useMemo, useState } from "react";
 import { initUtils } from '@telegram-apps/sdk';
 import { getUserAvatarUrl } from "@/app/constants";
 import { useGlobalState } from "@/context/GlobalStateContext";
+import useAxiosPost from "@/hooks/useAxios";
 
 export const Referrals: FC<any> = ({ color, className, ...rest }) => {
     const lp = useLaunchParams();
@@ -19,19 +20,31 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
     useEffect(()=>{
         console.log(postData)
     },[postData])
+
+
     const ReferralCard = (referralItem: any) => {
 
         const {isOpen, onOpen, onOpenChange} = useDisclosure();
         const [modalPlacement, setModalPlacement] = useState("auto");
+
+        const { data, error, loading, postData } = useAxiosPost('/maggoo/claim');
+
         
         const handleClaim = async(refInfo:any) => {
             console.log("handleClaim:refInfo",refInfo.referral)
-            onOpen()
+            const userInfo: any = {
+                user: refInfo.referral,
+              };
+              onOpen()
+            await postData(userInfo); // userInfo'yu sunucuya gönder
+        
         }
 
         return (
             <>
             <Modal 
+            size="full"
+            className="bg-transparent backdrop-blur-sm "
         isOpen={isOpen} 
         placement={"auto"}
         onOpenChange={onOpenChange} 
@@ -39,11 +52,26 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Claim</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1 text-white">Claim</ModalHeader>
               <ModalBody>
-                <div className="w-full h-full p-2 gap-2 flex items-center justify-center">
-                    <Spinner label="Claiming... Please Wait!" color="warning" />
-                </div>
+              <div className="w-full h-full p-2 gap-2 flex items-center justify-center">
+              {
+  loading ? (
+    <Spinner labelColor="primary" classNames={{
+        base:"text-white",
+        wrapper:"text-white"
+    }} className="text-white" label="Claiming... Please Wait!" color="warning" />
+  ) : (
+    <Image
+      src="/eggs/egg_open.png"
+      alt="egg"
+      width={400}
+      height={400}
+      className="bg-transparent"
+    />
+  )
+}
+                    </div>
               </ModalBody>
               <ModalFooter>
                 <Button className="btn-primary w-full"  onPress={onClose}>
