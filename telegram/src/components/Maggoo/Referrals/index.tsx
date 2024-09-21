@@ -65,7 +65,7 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
             <ScrollShadow hideScrollBar className="w-full h-[400px]">
 
                 <div className="w-full flex flex-col gap-2" style={{ color }}>
-                {postData && postData.refferals && postData.referrals.map((referral:any) => (
+                {postData && postData.referrals.map((referral:any) => (
                     <ReferralCard
                     key={referral.ID}
                     name={referral.UserName}
