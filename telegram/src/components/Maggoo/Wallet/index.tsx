@@ -13,6 +13,7 @@ import InitDataPage from "@/app/init-data/page";
 import Maggoo from "../Maggoo";
 import { getChar } from "@/app/utils/constants";
 import { useGlobalState } from "@/context/GlobalStateContext";
+import NFTCard from "../NFTCard";
 
 export const Wallet: FC<any> = ({ color, className, ...rest }) => {
 
@@ -39,14 +40,14 @@ export const Wallet: FC<any> = ({ color, className, ...rest }) => {
 
 
                       
-                        <ScrollShadow hideScrollBar className="w-full h-[400px]">
+                        <ScrollShadow hideScrollBar style={{ height: `calc(100vh - 400px)` }} className="w-full flex flex-col gap-2">
 
 
                                     {
                                         userData && userData.balanceInfo.map((item: any, index: number) => (
 
-                                            <div key={`magggoo${index}`} className="w-full overflow-none w-[185px] h-[260px]">
-                                                <Maggoo tokenId={item.token_identifier} isMarketItem={false} />
+                                            <div key={`magggoo${index}`} className="w-full overflow-none p-2 w-full">
+                                                <NFTCard tokenId={item.token_identifier}  />
                                             </div>
                                         ))}
 

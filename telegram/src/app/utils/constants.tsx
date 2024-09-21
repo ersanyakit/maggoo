@@ -229,3 +229,11 @@ export function getTokenWearables(tokenId: any) {
     
     return "ersan"
   }
+
+  export const getHashPowerStr = (characterId : any) => {
+    const total = 1000;
+    const hpInitialization = 16;
+    const totalHPInitialization = 91;
+    
+    return "1000"
+  }
