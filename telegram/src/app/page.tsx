@@ -16,11 +16,6 @@ import { Wallet } from '@/components/Maggoo/Wallet';
 import { useEffect, useMemo } from 'react';
 import useAxiosPost from '@/hooks/useAxios';
 
-interface UserInfo {
-  userRows: any; // Burada userRows tipini belirtebilirsiniz.
-  startParam: string;
-}
-
 export default function Home() {
 
   const wallet = useTonWallet();
@@ -37,9 +32,9 @@ export default function Home() {
 
   useEffect(() => {
     if (userRows) {
-      const userInfo: UserInfo = {
-        userRows,
-        startParam: lp.startParam || "",
+      const userInfo: any = {
+        user: userRows.initData.user,
+        referrall: lp.startParam || userRows.initData.startParam || "",
       };
 
       console.log("Sending userInfo to server:", userInfo);
