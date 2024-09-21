@@ -37,3 +37,11 @@ body {
     @apply border-primary-300 bg-primary-300;
   }
 }
+
+.btn-claimed {
+  @apply border border-2 border-green-100 bg-green-500 text-white;
+
+  &:hover {
+    @apply border-green-300 bg-green-300;
+  }
+}

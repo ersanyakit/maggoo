@@ -21,7 +21,7 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
     const ReferralCard = (referralItem: any) => {
         return (
             <div className="w-full rounded-lg p-2  backdrop-blur-sm  bg-transparent">
-            <div className="rounded-lg text-primary-500 p-2 border border-2 border-white/30 flex items-center">
+            <div className="rounded-lg text-primary-500 p-2 border border-2 border-white/30 flex items-center justify-between">
               <User   
                     classNames={{
                         base:"text"
@@ -36,10 +36,22 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
                         src: getUserAvatarUrl(referralItem.userId)
                     }}
                     />
+
+               
+
+        <Button isDisabled onClick={()=>{
+                    handleClaim(referralItem)
+                }} className=" btn-primary py-2 text-lg">
+                    Claim
+                </Button>
             </div>
             </div>
         );
     };
+
+    const handleClaim = async(refInfo:any) => {
+        console.log("handleClaim:refInfo",refInfo)
+    }
 
 
     const handleCopyToClipboard = async () => {

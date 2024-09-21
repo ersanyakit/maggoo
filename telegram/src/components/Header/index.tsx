@@ -46,6 +46,11 @@ export const Header: FC<any> = ({ color, className, ...rest }) => {
                             </DropdownItem>
                         
                             <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
+                            <DropdownItem key="maggoocommunity">Maggoo Community</DropdownItem>
+                            <DropdownItem key="maggooweb">Maggoo Website</DropdownItem>
+                            <DropdownItem key="maggootwitter">Follow Us</DropdownItem>
+
+
                             <DropdownItem onClick={()=>{
 
                                 }} key="logout" color="danger">
