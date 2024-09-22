@@ -1,4 +1,4 @@
-import { Avatar, Button, Card, CardBody, Link, ScrollShadow, Tab, Tabs, User } from "@nextui-org/react";
+import { Avatar, Button, Card, CardBody, Link, ScrollShadow, Spinner, Tab, Tabs, User } from "@nextui-org/react";
 import { useInitData, useLaunchParams } from "@telegram-apps/sdk-react";
 import { FC, useEffect, useMemo } from "react";
 import { initUtils } from '@telegram-apps/sdk';
@@ -43,7 +43,16 @@ export const Market: FC<any> = ({ color, className, ...rest }) => {
                                 <div key={`magggoo${index}`} className="w-full overflow-none p-2 w-full">
                                     <BuyItem item={item} tokenId={item.token_identifier} />
                                 </div>
-                            ))}
+                            ))
+                        }
+
+                        {loading && <div className="w-full h-screen flex items-center justify-center">
+
+                            <Spinner classNames={{
+                                label:"text-3xl"
+                            }} label="Loading... Please Wait!" color="warning" labelColor="warning"/>
+
+                        </div>}
 
 
                     </ScrollShadow>
