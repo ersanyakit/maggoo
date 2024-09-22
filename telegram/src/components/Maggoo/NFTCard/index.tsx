@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
  
 import { useRouter } from "next/router";
 import Maggoo from "../Maggoo";
-import { getCharacterId, getHashPower, getHashPowerStr, MAGGOO_ITEMS } from "@/app/utils/constants";
+import { getCharacterId, getCharacterNameByTokenId, getHashPower, getHashPowerStr, MAGGOO_ITEMS } from "@/app/utils/constants";
 import useAxiosPost from "@/hooks/useAxios";
   
   
@@ -40,7 +40,7 @@ interface NFTCardProps {
       if (!regex.test(newValue)) {
         return;
       }
-      if (newValue === "" || newValue.startsWith("0")) {
+      if (newValue === "") {
         setSellParam((prevFormData : any) => ({
           ...prevFormData,
           [formName]: ""
@@ -120,7 +120,7 @@ interface NFTCardProps {
             <div className="item_header">
               <div className="title pl-14 w-full">
                 <span className="w-full block text-start w-32 truncate text-white">
-                 {MAGGOO_ITEMS[getCharacterId(BigInt(tokenId))]}
+                 {getCharacterNameByTokenId(BigInt(tokenId))}
                 </span>
               </div>
               <div className="badge-wrapper">

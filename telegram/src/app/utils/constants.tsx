@@ -28,11 +28,12 @@ export function getTokenWearables(tokenId: any) {
 
   export const getChar = async (tokenId : any ) => {
 
-    console.log("here")
+    const isBase: boolean = BigInt(tokenId) >= BODY_TOKEN_ID_START;
+
 
     return {
         isInitialized: true,
-        isBaseBody: true,
+        isBaseBody: isBase,
         extraParam:"",
         tokenId: BigInt(tokenId), // Example tokenId based on timestamp
         level:"",
@@ -221,6 +222,49 @@ export function getTokenWearables(tokenId: any) {
   export const getIsBase = (tokenId: any) => {
     return tokenId >= BigInt(BODY_TOKEN_ID_START);
   };
+
+
+  export const getCharacterNameByTokenId = (tokenId : any) => {
+
+    let characterId = getCharacterId(tokenId)
+    if(getIsBase(tokenId)){
+      return MAGGOO_ITEMS[characterId] 
+    }else{
+      let wearableId = getWearableId(tokenId)
+
+        let characterName = MAGGOO_ITEMS[characterId] ;
+        switch (wearableId) {
+            case 0:
+                characterName = `${characterName} >> BODY`;
+                break;
+            case 1:
+                characterName = `${characterName} >> CHEST`;
+                break;
+            case 2:
+                characterName = `${characterName} >> HEADGEAR`;
+                break;
+            case 3:
+                characterName = `${characterName} >> BACKPACK`;
+                break;
+            case 4:
+                characterName = `${characterName} >> RIGHT HAND`;
+                break;
+            case 5:
+                characterName = `${characterName} >> LEFT HAND`;
+                break;
+            case 6:
+                characterName = `${characterName} >> FACE`;
+                break;
+            default:
+                characterName = `${characterName} >> WORM`;
+                break;
+        }
+
+        return characterName;
+    }
+
+
+  }
 
   export const getHashPower = (characterId : any, slot:WearableSlot) => {
     const total = 1000;

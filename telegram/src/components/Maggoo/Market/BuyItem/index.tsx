@@ -2,7 +2,7 @@ import { Avatar, Button, Link, Image, ModalContent, ModalBody, Modal, ModalFoote
 import React, { useEffect, useState } from "react";
  
 import { useRouter } from "next/router";
-import { getCharacterId, getHashPower, getHashPowerStr, MAGGOO_ITEMS } from "@/app/utils/constants";
+import { getCharacterId, getCharacterNameByTokenId, getHashPower, getHashPowerStr, MAGGOO_ITEMS } from "@/app/utils/constants";
 import useAxiosPost from "@/hooks/useAxios";
 import Maggoo from "../../Maggoo";
   
@@ -76,7 +76,7 @@ interface NFTCardProps {
             <div className="item_header">
               <div className="title pl-14 w-full">
                 <span className="w-full block text-start w-32 truncate text-white">
-                 {MAGGOO_ITEMS[getCharacterId(BigInt(tokenId))]}
+                 {getCharacterNameByTokenId(BigInt(tokenId))}
                 </span>
               </div>
               <div className="badge-wrapper">

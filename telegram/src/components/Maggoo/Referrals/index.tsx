@@ -22,7 +22,7 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
 
     const ReferralCard = (referralItem: any) => {
 
-        const { isOpen, onOpen, onOpenChange } = useDisclosure();
+        const { isOpen, onOpen, onOpenChange,onClose } = useDisclosure();
         const [modalPlacement, setModalPlacement] = useState("auto");
 
         const { data, error, loading, postData } = useAxiosPost('/maggoo/claim');

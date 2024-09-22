@@ -16,3 +16,5 @@ export const getUserAvatarUrl = (userId: number) => {
 export const generateImage = (tokenId: number, part: string) => {
     return DEFAULT_MAGGOO_URL.replace("%s", tokenId.toString()).replace("%s", part).replace("%s", tokenId.toString());
 };
+
+ 
