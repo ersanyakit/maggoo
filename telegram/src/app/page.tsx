@@ -122,21 +122,7 @@ export default function Home() {
 
             </Tab>
 
-            <Tab key="upgrade" title={
-              <div className='w-full flex flex-col gap-2 items-center justify-center'>
-                <span translate='no' className="material-symbols-outlined">
-                  extension
-                </span>
-                <span>Upgrade</span>
-
-              </div>
-            }>
-              <div className='w-screen h-[calc(100vh-180px)]'>
-                upgrade
-              </div>
-
-
-            </Tab>
+     
 
             <Tab key="wallet" title={
               <div className='w-full flex flex-col gap-2 items-center justify-center'>
