@@ -49,8 +49,8 @@ export const Market: FC<any> = ({ color, className, ...rest }) => {
                         {loading && <div className="w-full h-screen flex items-center justify-center">
 
                             <Spinner classNames={{
-                                label:"text-3xl"
-                            }} label="Loading... Please Wait!" color="warning" labelColor="warning"/>
+                                label: "text-3xl"
+                            }} label="Loading... Please Wait!" color="warning" labelColor="warning" />
 
                         </div>}
 
