@@ -23,6 +23,7 @@ interface NFTCardProps {
   const { isOpen, onOpen, onOpenChange,onClose } = useDisclosure();
   const [modalPlacement, setModalPlacement] = useState("auto");
   const { data, error, loading, postData } = useAxiosPost('/maggoo/sell');
+  const [isSold, setIsSold] = useState(false)
   const [sellParam, setSellParam] = useState<any>({
     price: ""
   });
@@ -63,6 +64,7 @@ interface NFTCardProps {
  
     await postData(nftInfo).then(()=>{
       onClose()
+      setIsSold(true)
     }) 
   }
 
@@ -103,7 +105,7 @@ interface NFTCardProps {
                   radius="lg"
                   className="text-lg w-full  text-white"
                 />
-                                    <Button className="btn-primary w-full py-6 text-2xl" onPress={()=>{
+                                    <Button isDisabled={isSold} className="btn-primary w-full py-6 text-2xl" onPress={()=>{
                                       handleSell()
                                     }}>
                                         Sell
@@ -141,7 +143,7 @@ interface NFTCardProps {
                   <Button isDisabled={true} className="btn btn-primary w-full">
                     Stake
                   </Button>
-                  <Button onClick={()=>{
+                  <Button isDisabled={isSold}  onClick={()=>{
                     onOpen()
                   
                   }}
