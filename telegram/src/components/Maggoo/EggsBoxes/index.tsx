@@ -69,8 +69,11 @@ export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => {
         <Tab key="maggooEgg" title="MAGGOO EGG">
           <Card  style={{ height: `calc(100vh - 380px)` }}  className="backdrop-blur-sm bg-transparent">
             <CardBody>
-            <div className="w-full h-full p-2 flex-col border-2 border-white/30 flex justify-center items-center rounded-xl">
-                <Image
+            <div className="w-full h-full p-2 flex-col border-2 border-white/30 flex justify-around items-center rounded-xl">
+            
+            <div className="w-full flex items-center justify-center flex-grow-2  flex-shrink-0">
+
+            <Image
                     src={"/eggs/egg_default.png"}
                     alt="egg"
                     width={160}
@@ -78,7 +81,8 @@ export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => {
                     className="bg-transparent"
                 />
 
-
+                </div>
+                <div className="w-full">
                  {   wallet  ? 
                          <Button onClick={()=>{
                             handleOpenEgg()
@@ -88,11 +92,15 @@ export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => {
                  : 
                     <TonConnectButton className='ton-connect-page__button'/>
                  }
+                 </div>
           
+                 <div className="w-full">
 
                 <p className="text-c-primary text-sm sm:text-center  sm:text-xs">
                     Maggoo Egg contains various Maggoos with certain hash powers
                 </p>
+                </div>
+
             </div>            
             </CardBody>
           </Card>  
@@ -100,29 +108,38 @@ export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => {
         <Tab key="music" title="MYSTERYBOX">
         <Card  style={{ height: `calc(100vh - 380px)` }}  className="backdrop-blur-sm bg-transparent">
         <CardBody>
-            <div className="w-full h-full p-2 flex-col border-2 border-white/30 flex justify-center items-center rounded-xl">
-                <Image
+        <div className="w-full h-full p-2 flex flex-col border-2 border-white/30 flex justify-around items-center rounded-xl">
+
+                <div className="w-full flex items-center justify-center flex-grow-2  flex-shrink-0">
+
+        <Image
                     src={"/boxes/box_default.png"}
                     alt="boxes"
                     width={150}
                     height={260}
                     className="bg-transparent"
                 />
+                </div>
 
+
+                <div className="w-full">
                 {
                     wallet ?   <Button onClick={()=>{
                         handleOpenMysteriosBox()
                     }} className=" btn-primary  w-full py-6 text-2xl">
                         <p>0.1 TON </p>
                       </Button> : 
-                     <TonConnectButton className='ton-connect-page__button'/>
+                     <TonConnectButton className='ton-connect-page__button flex-grow flex-shrink'/>
 
                 }
+                </div>
+                <div className="w-full">
               
 
-                <p className="text-c-primary text-sm sm:text-center  sm:text-xs">
+                <p className="text-c-primary text-sm sm:text-center  sm:text-xs flex-grow flex-shrink">
                     Mystery Box contains various items with certain hash powers
                 </p>
+                </div>
             </div>
             </CardBody>
           </Card>  
