@@ -122,7 +122,7 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
                             }}
                         />
 
-                        <Button isDisabled={referralItem.referral.IsRefClaimed} onClick={() => {
+                        <Button isLoading={loading} isDisabled={referralItem.referral.IsRefClaimed} onClick={() => {
                             handleClaim(referralItem)
                         }} className={referralItem.referral.IsRefClaimed ? "btn-claimed" : "btn-primary" + "  py-2 text-lg"}>
                             {referralItem.referral.IsRefClaimed ? "Claimed" : "Claim"}
