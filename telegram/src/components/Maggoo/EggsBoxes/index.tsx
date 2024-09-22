@@ -67,13 +67,13 @@ export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => {
     tabContent: "group-data-[selected=true]:text-[#fff] text-white/50",
   }} fullWidth aria-label="Options">
         <Tab key="maggooEgg" title="MAGGOO EGG">
-          <Card className="backdrop-blur-sm bg-transparent">
+          <Card  style={{ height: `calc(100vh - 380px)` }}  className="backdrop-blur-sm bg-transparent">
             <CardBody>
             <div className="w-full h-full p-2 flex-col border-2 border-white/30 flex justify-center items-center rounded-xl">
                 <Image
                     src={"/eggs/egg_default.png"}
                     alt="egg"
-                    width={150}
+                    width={160}
                     height={260}
                     className="bg-transparent"
                 />
@@ -98,7 +98,7 @@ export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => {
           </Card>  
         </Tab>
         <Tab key="music" title="MYSTERYBOX">
-        <Card className="backdrop-blur-sm bg-transparent">
+        <Card  style={{ height: `calc(100vh - 380px)` }}  className="backdrop-blur-sm bg-transparent">
         <CardBody>
             <div className="w-full h-full p-2 flex-col border-2 border-white/30 flex justify-center items-center rounded-xl">
                 <Image
@@ -129,6 +129,6 @@ export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => {
         </Tab>
       </Tabs>
 
-      
+
     </>
 )}

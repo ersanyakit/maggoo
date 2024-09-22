@@ -34,7 +34,7 @@ export const Wallet: FC<any> = ({ color, className, ...rest }) => {
                 cursor: "w-full border border-2 border-primary-100 bg-primary-300 text-white",
                 tabContent: "group-data-[selected=true]:text-[#fff] text-white/50",
             }} fullWidth aria-label="Options">
-                <Tab key="wallet" title="WALLET">
+                <Tab key="wallet" title={"Maggoo"}>
                     <Card className="backdrop-blur-sm bg-transparent">
                         <CardBody>
                        
@@ -56,6 +56,9 @@ export const Wallet: FC<any> = ({ color, className, ...rest }) => {
                             </ScrollShadow>
                         </CardBody>
                     </Card>
+                </Tab>
+                <Tab key={"tokens"} title={"Tokens"}>
+                    TONS OF TOKEN
                 </Tab>
             </Tabs>
 
