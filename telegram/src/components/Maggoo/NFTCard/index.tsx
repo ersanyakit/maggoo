@@ -20,7 +20,7 @@ interface NFTCardProps {
   const [errorModalOpen, setErrorModalOpen] = useState<boolean>(false);
   const [selectedTokenId, setSelectedTokenId] = useState<string>("");
 
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange,onClose } = useDisclosure();
   const [modalPlacement, setModalPlacement] = useState("auto");
   const { data, error, loading, postData } = useAxiosPost('/maggoo/sell');
   const [sellParam, setSellParam] = useState<any>({
@@ -62,7 +62,7 @@ interface NFTCardProps {
     };
  
     await postData(nftInfo).then(()=>{
-      onOpen()
+      onClose()
     }) 
   }
 
@@ -143,6 +143,7 @@ interface NFTCardProps {
                   </Button>
                   <Button onClick={()=>{
                     onOpen()
+                  
                   }}
                     className="btn btn-primary w-full">
                     Sell
