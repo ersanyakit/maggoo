@@ -31,7 +31,8 @@ export const Wallet: FC<any> = ({ color, className, ...rest }) => {
         <>
             <Tabs classNames={{
                 tabList: "backdrop-blur-sm bg-white/10",
-                tabContent: "text-white"
+                cursor: "w-full border border-2 border-primary-100 bg-primary-300 text-white",
+                tabContent: "group-data-[selected=true]:text-[#fff] text-white/50",
             }} fullWidth aria-label="Options">
                 <Tab key="wallet" title="WALLET">
                     <Card className="backdrop-blur-sm bg-transparent">

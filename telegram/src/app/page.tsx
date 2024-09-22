@@ -78,7 +78,7 @@ export default function Home() {
                 <span translate='no' className="material-symbols-outlined">
                   diversity_1
                 </span>
-                <span className='text-xs'>Referrals</span>
+                <span className='text-xs'>Earn</span>
 
               </div>
             }>
@@ -101,7 +101,7 @@ export default function Home() {
                 </div>
               }>
               <div className='w-screen h-[calc(100vh-180px)]  pt-[150px] p-2'>
-                <EggsAndBoxes />
+              <EggsAndBoxes />
               </div>
 
             </Tab>
