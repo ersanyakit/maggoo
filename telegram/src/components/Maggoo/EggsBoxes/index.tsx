@@ -234,7 +234,7 @@ export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => {
                                     <Button isLoading={eggLoading} isDisabled={eggLoading} onClick={() => {
                                         handleOpenEgg()
                                     }} className=" btn-primary  w-full py-6 text-2xl">
-                                        <p>Maggoo’s Hidden Treasure</p>
+                                        <p>{"Maggoo’s Hidden Treasure"}</p>
                                     </Button>
 
                                 </div>
@@ -272,7 +272,7 @@ export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => {
                                         <Button isLoading={boxLoading} isDisabled={boxLoading} onClick={() => {
                                             handleOpenMysteriosBox()
                                         }} className=" btn-primary  w-full py-6 text-2xl">
-                                            <p>Maggoo"s Mystery Vault</p>
+                                            <p>{"Maggoo's Mystery Vault"}</p>
                                         </Button>
 
                                     }
