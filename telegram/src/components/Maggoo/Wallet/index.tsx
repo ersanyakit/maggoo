@@ -47,7 +47,7 @@ export const Wallet: FC<any> = ({ color, className, ...rest }) => {
                                         userData && userData.balanceInfo.map((item: any, index: number) => (
 
                                             <div key={`magggoo${index}`} className="w-full overflow-none p-2 w-full">
-                                                <NFTCard tokenId={item.token_identifier}  />
+                                                <NFTCard item={item} tokenId={item.token_identifier}  />
                                             </div>
                                         ))}
 

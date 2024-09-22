@@ -55,18 +55,17 @@ export default function Home() {
     <>
     <div className='main'>
       <Header/>
-      <div className="flex fixed flex-wrap gap-4">
+      <div className="flex fixed flex-wrap">
         <Tabs
           fullWidth
           color="default"
           variant='light'
           placement='bottom'
-          className='w-screen h-screen'
+          className='w-screen h-screen bottom-0'
           classNames={{
             tabList: "gap-2 w-full relative rounded-lg border-divider backdrop-blur-sm bg-white/10",
             cursor: "w-full border border-2 border-primary-100 bg-primary-300 text-white",
             tabContent: "group-data-[selected=true]:text-[#fff] text-white/50",
-
             tab: "h-50 text-white"
           }}
           size="sm"
