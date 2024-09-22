@@ -2,7 +2,7 @@ import { FC, useEffect, useMemo } from "react";
 import { Button, Card, CardBody, Modal, ModalBody, ModalContent, Image, ModalFooter, ModalHeader, Spinner, Tab, Tabs, useDisclosure } from "@nextui-org/react";
 import { TonConnectButton, useTonConnectUI, useTonWallet } from "@tonconnect/ui-react";
 import { DEPOSIT_RECEIVER_ADDRESS, generateImage } from "@/app/constants";
-import { useInitData, useLaunchParams, useUtils } from '@telegram-apps/sdk-react';
+import { useInitData, useLaunchParams, useUtils } from "@telegram-apps/sdk-react";
 import useAxiosPost from "@/hooks/useAxios";
 import { useGlobalState } from "@/context/GlobalStateContext";
 import { data } from "framer-motion/client";
@@ -15,9 +15,9 @@ export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => {
     const wallet = useTonWallet();
     const utils = useUtils();
 
-    const { postData: openEgg, data: eggData, error: eggError, loading: eggLoading } = useAxiosPost('/maggoo/egg');
-    const { postData: openBox, data: boxData, error: boxError, loading: boxLoading } = useAxiosPost('/maggoo/box');
-    const { userData } = useGlobalState(); // Global state'ten veriyi al
+    const { postData: openEgg, data: eggData, error: eggError, loading: eggLoading } = useAxiosPost("/maggoo/egg");
+    const { postData: openBox, data: boxData, error: boxError, loading: boxLoading } = useAxiosPost("/maggoo/box");
+    const { userData } = useGlobalState(); // Global state"ten veriyi al
 
     const lp = useLaunchParams();
     const initData = useInitData();
@@ -57,9 +57,9 @@ export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => {
             } else {
                 onOpenModelEgg()
             }
-            console.log('Egg opened:', eggData);
+            console.log("Egg opened:", eggData);
         } catch (error) {
-            console.error('Error opening egg:', error);
+            console.error("Error opening egg:", error);
         }
 
 
@@ -73,16 +73,14 @@ export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => {
         }
         try {
             const response = await openBox(params); // Parametreleri burada geçiriyoruz
-            console.log('Box opened:', boxData);
+            console.log("Box opened:", boxData);
             if (boxError) {
-              //  onOpenModelError()
+                onOpenModelError()
             } else {
                 onOpenModelBox()
             }
-            console.log(boxData, getImageName(false, (boxData as any).tokenId, (boxData as any).wearableId))
-            onOpenModelBox()
         } catch (error) {
-            console.error('Error opening box:', error);
+            console.error("Error opening box:", error)
         }
 
     }
@@ -274,7 +272,7 @@ export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => {
                                         <Button isLoading={boxLoading} isDisabled={boxLoading} onClick={() => {
                                             handleOpenMysteriosBox()
                                         }} className=" btn-primary  w-full py-6 text-2xl">
-                                            <p>Maggoo's Mystery Vault</p>
+                                            <p>Maggoo"s Mystery Vault</p>
                                         </Button>
 
                                     }
