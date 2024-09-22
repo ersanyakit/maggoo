@@ -156,7 +156,7 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
     return (
         <div className={`w-full h-full flex gap-2 flex-col ${className}`} {...rest}>
 
-            <ScrollShadow hideScrollBar className="w-full h-[400px]">
+            <ScrollShadow hideScrollBar className="w-full" style={{ height: `calc(100vh - 400px)` }} >
 
                 <div className="w-full flex flex-col gap-2" style={{ color }}>
                     {userData && userData.referrals.map((referral: any) => (
