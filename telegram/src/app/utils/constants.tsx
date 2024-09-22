@@ -226,14 +226,57 @@ export function getTokenWearables(tokenId: any) {
     const total = 1000;
     const hpInitialization = 16;
     const totalHPInitialization = 91;
-    
-    return "ersan"
+    const commonDifference = 7;
+
+
+
+    let hpTotal =  totalHPInitialization + (characterId - 1) * commonDifference;
+
+    let wearableSlot = slot
+    let bodyHP = hpInitialization + (characterId - 1)
+    let hashPower = 0
+    switch (wearableSlot) {
+      case WearableSlot.Body:
+        hashPower = bodyHP
+        break
+      case WearableSlot.ChestArmor:
+        hashPower = bodyHP - 1 
+        break
+      case WearableSlot.Headgear:
+        hashPower =  bodyHP - 2
+        break
+      case WearableSlot.Backpack:
+        hashPower =  bodyHP - 3
+        break
+      case WearableSlot.RightHand:
+        hashPower =  bodyHP - 4
+        break
+      case WearableSlot.LeftHand:
+        hashPower =  bodyHP - 5
+        break
+      case WearableSlot.Face:
+        hashPower =  bodyHP - 6
+        break
+      case WearableSlot.Worm:
+        hashPower = hpTotal
+        break
+      default:
+        hashPower = hpTotal
+        break
+    }
+       
+    return hashPower
   }
 
-  export const getHashPowerStr = (characterId : any) => {
-    const total = 1000;
-    const hpInitialization = 16;
-    const totalHPInitialization = 91;
-    
-    return "1000"
+  export const getHashPowerStr = (tokenId : any) => {
+    let isBody = BigInt(tokenId) >= BigInt(BODY_TOKEN_ID_START);
+
+    let divider = isBody  ? BODY_TOKEN_ID_START : WEARABLE_TOKEN_ID_START
+
+    let characterId = Math.floor(Number(tokenId) / divider);
+    let wearableId = Math.floor(Number(tokenId) % divider);
+
+    let wearableSlot = isBody ? WearableSlot.Body : wearableId
+
+    return getHashPower(characterId,wearableSlot).toString() 
   }
