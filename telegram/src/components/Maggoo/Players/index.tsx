@@ -83,7 +83,7 @@ export const Players: FC<any> = ({ color, className, ...rest }) => {
 
                 {
                     users.map((player: any) => (
-                        <Player key={player.UserID} player={player} />
+                        <Player key={`maggooItem${player.UserID}`} player={player} />
                     ))
                 }
             </ScrollShadow>
