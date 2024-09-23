@@ -70,7 +70,7 @@ export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => {
 
 
     const handleOpenMysteriosBox = async () => {
-        hapticFeedback.impactOccurred('rigid');
+        hapticFeedback.impactOccurred('heavy');
 
         let params = {
             user: userData.userInfo.UserID
