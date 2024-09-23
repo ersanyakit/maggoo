@@ -139,7 +139,7 @@ export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => {
                             <ModalBody>
                                 <div className="w-full h-full p-2 gap-2 flex items-center justify-center">
 
-                                <div className={(eggLoading ? "" : "bg-white/90") + " w-full h-full p-2 gap-2 flex items-center justify-center rounded-lg"}>
+                                <div className={(eggLoading ? "" : eggError ? "" : "bg-white/90") + " w-full h-full p-2 gap-2 flex text-center items-center justify-center rounded-lg"}>
 
                                         {
                                             eggLoading ?     <Image
@@ -149,7 +149,12 @@ export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => {
                                             width={400}
                                             height={400}
                                             className="bg-transparent"
-                                            /> :  <Maggoo isMarketItem={true} tokenId={(eggData as any).tokenId * BODY_TOKEN_ID_START + 1} />
+                                            /> : eggError ? 
+                                            
+                                        
+                                             <span className=" text-3xl text-primary-300  w-full"> {eggError.response.data}</span>
+                                        
+                                            : <Maggoo isMarketItem={true} tokenId={(eggData as any).tokenId * BODY_TOKEN_ID_START + 1} />
                                         }
 
                                  
@@ -181,7 +186,7 @@ export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => {
                         <>
                             <ModalHeader className="flex flex-col gap-1 text-white">MysteryBox</ModalHeader>
                             <ModalBody>
-                                <div className={(boxLoading ? "" : "bg-white/90") + " w-full h-full p-2 gap-2 flex items-center justify-center rounded-lg"}>
+                                <div className={(boxLoading ? "" : boxError ? "" : "bg-white/90") + " text-center w-full h-full p-2 gap-2 flex items-center justify-center rounded-lg"}>
 
                                     {
                                         boxLoading ? <Image
@@ -191,7 +196,10 @@ export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => {
                                         width={400}
                                         height={400}
                                         className="relative"
-                                    /> :  <Maggoo isMarketItem={true} tokenId={(boxData as any).tokenId * WEARABLE_TOKEN_ID_START + (boxData as any).wearableId} />
+                                    /> : boxError ?  
+                                      <span className="text-primary-300  text-3xl w-full"> {boxError.response.data}</span>
+                                    
+                                    : <Maggoo isMarketItem={true} tokenId={(boxData as any).tokenId * WEARABLE_TOKEN_ID_START + (boxData as any).wearableId} />
 
                                     }
                                     
