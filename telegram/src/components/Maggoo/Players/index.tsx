@@ -78,7 +78,7 @@ export const Players: FC<any> = ({ color, className, ...rest }) => {
                      
                 </div>
 
-                <ScrollShadow size={100} hideScrollBar className="grid grid-cols-3 w-full h-full max-h-[calc(100vh-220px)] gap-4">
+                <ScrollShadow orientation="vertical" size={100} hideScrollBar className="grid grid-cols-3 w-full overflow-x-hidden h-full p-2 max-h-[calc(100vh-220px)] gap-4">
 
 
                 {
