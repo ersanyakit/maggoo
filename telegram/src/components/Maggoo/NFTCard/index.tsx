@@ -3,8 +3,9 @@ import React, { useEffect, useState } from "react";
  
 import { useRouter } from "next/router";
 import Maggoo from "../Maggoo";
-import { getCharacterId, getCharacterNameByTokenId, getHashPower, getHashPowerStr, MAGGOO_ITEMS } from "@/app/utils/constants";
+import { getCharacterId, getCharacterNameByTokenId, getHashPower, getHashPowerStr, getIsBase, MAGGOO_ITEMS } from "@/app/utils/constants";
 import useAxiosPost from "@/hooks/useAxios";
+import { initHapticFeedback } from "@telegram-apps/sdk-react";
   
   
 interface NFTCardProps {
@@ -19,6 +20,7 @@ interface NFTCardProps {
 
   const [errorModalOpen, setErrorModalOpen] = useState<boolean>(false);
   const [selectedTokenId, setSelectedTokenId] = useState<string>("");
+  const hapticFeedback = initHapticFeedback();
 
   const { isOpen, onOpen, onOpenChange,onClose } = useDisclosure();
   const [modalPlacement, setModalPlacement] = useState("auto");
@@ -143,7 +145,13 @@ interface NFTCardProps {
                   <Button isDisabled={true} className="btn btn-primary w-full">
                     Stake
                   </Button>
+                  <Button onClick={()=>{
+                    hapticFeedback.impactOccurred("heavy")
+
+                  }}  className="btn btn-primary w-full" isDisabled={!getIsBase(tokenId)}>Upgrade</Button>
                   <Button isDisabled={isSold}  onClick={()=>{
+                    hapticFeedback.impactOccurred("heavy")
+
                     onOpen()
                   
                   }}
