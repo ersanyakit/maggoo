@@ -204,7 +204,7 @@ export const Tips: FC<any> = ({ color, className, ...rest }) => {
                         ))
                     }
                     {
-                        !loading && tips.length == 0 && <div className="w-full h-screen flex flex-col gap-2 text-center items-center justify-center overflow-x-none">
+                        !loading && tips.length == 0 && <div className="w-full h-full flex flex-col gap-2 text-center items-center justify-center overflow-x-none">
                             <Button onClick={() => {
                                 hapticFeedback.impactOccurred("heavy")
                                 loadMoreUsers()
