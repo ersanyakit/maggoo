@@ -23,8 +23,8 @@ export const Players: FC<any> = ({ color, className, ...rest }) => {
     }, [])
 
     const loadMoreUsers = async () => {
-        let params : any = {
-            cursor:parseInt(cursor) || 0
+        let params: any = {
+            cursor: parseInt(cursor) || 0
         }
         await postData(params)
     };
@@ -53,7 +53,7 @@ export const Players: FC<any> = ({ color, className, ...rest }) => {
     const Player = (props: { player: any }) => {
         return (
             <div className="w-full h-full flex border border-2 border-white/30 p-2 rounded-lg flex-col gap-2 items-center justify-center text-center">
-                <Image  className="w-full h-full" src={getUserAvatarUrl(props.player.UserID)} />
+                <Image className="w-full h-full" src={getUserAvatarUrl(props.player.UserID)} />
 
                 <span className="!text-primary-300 w-full">{props.player.UserName}</span>
             </div>
@@ -63,27 +63,27 @@ export const Players: FC<any> = ({ color, className, ...rest }) => {
     return (
         <>
 
-            <div  className="rounded-lg bg-white/30 border border-2 border-white/30 p-4 w-full flex flex-row gap-2 items-start justify-between">
+            <div className="rounded-lg bg-white/30 border border-2 border-white/30 p-4 w-full flex flex-row gap-2 items-start justify-between">
                 <span className="!text-primary-300 text-lg  w-full">Total User Count</span>
-                
-                    {
-                        loading ? <div className="w-full flex flex-col justify-center items-end">
-                              <Spinner size="sm" color="success" labelColor="success"/>
 
-                        </div> : <><span className="text-success-500 text-lg w-full text-end">
-                            {data && (data as any).totalUserCount}
-                            </span>
-                            </>
-                    }
-                     
-                </div>
+                {
+                    loading ? <div className="w-full flex flex-col justify-center items-end">
+                        <Spinner size="sm" color="success" labelColor="success" />
 
-                <ScrollShadow orientation="vertical" size={100} hideScrollBar className="grid grid-cols-3 w-full overflow-x-hidden h-full p-2 max-h-[calc(100vh-220px)] gap-4">
+                    </div> : <><span className="text-success-500 text-lg w-full text-end">
+                        {data && (data as any).totalUserCount}
+                    </span>
+                    </>
+                }
+
+            </div>
+
+            <ScrollShadow orientation="vertical" size={100} hideScrollBar className="grid grid-cols-3 w-full overflow-x-hidden h-full p-2 max-h-[calc(100vh-220px)] gap-4">
 
 
                 {
-                    users.map((player: any) => (
-                        <Player key={`maggooItem${player.UserID}`} player={player} />
+                    users.map((player: any, index: number) => (
+                        <Player key={`maggooItem${player.UserID}-${index}`} player={player} />
                     ))
                 }
             </ScrollShadow>
