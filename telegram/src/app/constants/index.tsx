@@ -8,8 +8,6 @@ export const getUserAvatarUrl = (userId: number) => {
     const positiveUserId = Math.abs(userId);
     const avatarIndex = positiveUserId % totalAvatars;
     const folder = Math.floor(avatarIndex / 10) + 1;  // Klasörü belirlemek için
-    console.log(userId,folder)
-
     return DEFAULT_MAGGOO_URL.replace("%s", folder.toString()).replace("%s", "Worm").replace("%s", folder.toString());
 };
 

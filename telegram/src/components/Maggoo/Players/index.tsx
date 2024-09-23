@@ -1,0 +1,94 @@
+import { Avatar, Button, Card, CardBody, Link, ScrollShadow, Spinner, Tab, Tabs, User } from "@nextui-org/react";
+import { useInitData, useLaunchParams } from "@telegram-apps/sdk-react";
+import { FC, useEffect, useMemo, useState } from "react";
+import { initUtils } from '@telegram-apps/sdk';
+import { getUserAvatarUrl } from "@/app/constants";
+import { useGlobalState } from "@/context/GlobalStateContext";
+import NFTCard from "../NFTCard";
+import useAxiosPost from "@/hooks/useAxios";
+
+export const Players: FC<any> = ({ color, className, ...rest }) => {
+    const lp = useLaunchParams();
+    const initData = useInitData();
+    const utils = initUtils();
+    const { userData } = useGlobalState(); // Global state'ten veriyi al
+    const [cursor, setCursor] = useState<any>(null);
+    const { data, error, loading, postData } = useAxiosPost(`/maggoo/players`);
+    const [users, setUsers] = useState<any>([]);
+
+
+
+    useEffect(() => {
+        loadMoreUsers()
+    }, [])
+
+    const loadMoreUsers = async () => {
+        let params : any = {
+            cursor:parseInt(cursor) || 0
+        }
+        await postData(params)
+    };
+
+    useEffect(() => {
+        if (!loading) {
+            if (data) {
+                //@ts-ignore
+                setUsers(prevUsers => [...prevUsers, ...data.users]);
+                //@ts-ignore
+                setCursor(data.nextCursor);
+
+                //@ts-ignore
+                console.log("veri geldi", data.users)
+
+            }
+
+
+        }
+    }, [loading])
+
+    useEffect(() => {
+        console.log("userLeng", users.length, users)
+    }, [users.length])
+
+    const Player = (props: { player: any }) => {
+        return (
+            <div className="w-full h-full flex border border-2 border-white/30 p-2 rounded-lg flex-col gap-2 items-center justify-center text-center">
+                <Avatar size="lg" radius="full" src={getUserAvatarUrl(props.player.UserID)} />
+
+                <span className="!text-primary-300 w-full">{props.player.UserName}</span>
+            </div>
+        )
+    }
+
+    return (
+        <>
+
+            <div  className="rounded-lg bg-white/80 p-4 w-full flex flex-row gap-2 items-start justify-around">
+                <span className="!text-primary-300">Total User Count</span>
+                
+                    {
+                        loading ? <>
+                              <Spinner size="sm" color="success" labelColor="success"/>
+
+                        </> : <><span className="text-success-500">
+                            {data && (data as any).totalUserCount}
+                            </span>
+                            </>
+                    }
+                     
+                </div>
+
+            <div className="grid grid-cols-3 w-full h-full max-h-[calc(100vh-200px)] gap-4 overflow-y-scroll">
+
+                {
+                    users.map((player: any) => (
+                        <Player key={player.UserID} player={player} />
+                    ))
+                }
+            </div>
+            <Button onClick={() => {
+                loadMoreUsers()
+            }} fullWidth className="btn btn-primary text-2xl py-6">Load More</Button>
+        </>
+    );
+};
