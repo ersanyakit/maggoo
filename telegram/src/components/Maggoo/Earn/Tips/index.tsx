@@ -209,7 +209,7 @@ export const Tips: FC<any> = ({ color, className, ...rest }) => {
                                 hapticFeedback.impactOccurred("heavy")
                                 loadMoreUsers()
                             }} isLoading={loading} variant="light" color="default" className="w-full h-full flex flex-col gap-2 text-center items-center justify-center p-2">
-                                <Image width={180} src={getUserAvatarUrl(userData.userInfo.UserID)} />
+                                <Image width={130} src={getUserAvatarUrl(userData.userInfo.UserID)} />
                                 <div className="w-full text-center overflow-hidden">
                                     <span className="text-white text-md sm:text-center sm:text-xs whitespace-normal">
                                         There are no active TIPs right now. Please join the MAGGOO Telegram channel and use the TIP command. MAGGOO will automatically distribute the TIPs. Each TIP is only valid for 3 minutes. The fastest one wins!
