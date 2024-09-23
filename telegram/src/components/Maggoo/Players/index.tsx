@@ -1,4 +1,4 @@
-import { Avatar, Button, Card, CardBody, Link, ScrollShadow, Spinner, Tab, Tabs, User } from "@nextui-org/react";
+import { Avatar, Button, Image, Card, CardBody, Link, ScrollShadow, Spinner, Tab, Tabs, User } from "@nextui-org/react";
 import { useInitData, useLaunchParams } from "@telegram-apps/sdk-react";
 import { FC, useEffect, useMemo, useState } from "react";
 import { initUtils } from '@telegram-apps/sdk';
@@ -53,7 +53,7 @@ export const Players: FC<any> = ({ color, className, ...rest }) => {
     const Player = (props: { player: any }) => {
         return (
             <div className="w-full h-full flex border border-2 border-white/30 p-2 rounded-lg flex-col gap-2 items-center justify-center text-center">
-                <Avatar size="lg" radius="full" src={getUserAvatarUrl(props.player.UserID)} />
+                <Image  className="w-full h-full" src={getUserAvatarUrl(props.player.UserID)} />
 
                 <span className="!text-primary-300 w-full">{props.player.UserName}</span>
             </div>
