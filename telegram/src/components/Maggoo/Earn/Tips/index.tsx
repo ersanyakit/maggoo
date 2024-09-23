@@ -5,6 +5,7 @@ import { initUtils } from '@telegram-apps/sdk';
 import { generateImage, getUserAvatarUrl } from "@/app/constants";
 import { useGlobalState } from "@/context/GlobalStateContext";
 import useAxiosPost from "@/hooks/useAxios";
+import { datalist } from "framer-motion/m";
 
 export const Tips: FC<any> = ({ color, className, ...rest }) => {
     const lp = useLaunchParams();
@@ -58,15 +59,14 @@ export const Tips: FC<any> = ({ color, className, ...rest }) => {
         const handleClaim = async (tipInfo: any) => {
             hapticFeedback.impactOccurred('heavy');
 
-            console.log(tipInfo)
-            const userInfo: any = {
-                user: tipInfo,
-            };
-         
-            await postData(userInfo).then(()=>{
-              
-             }) 
-             onOpen()
+            let params = {
+                user: userData.userInfo.UserID,
+                tip: tipData.tip.tipId
+            }
+            await postData(params).then(() => {
+
+            })
+            onOpen()
         }
 
         useEffect(() => {
@@ -74,12 +74,14 @@ export const Tips: FC<any> = ({ color, className, ...rest }) => {
         }, [])
 
 
-        const isClaimed = (claims : any) : boolean => {
-            if(!claims){
-                return false
+        const isClaimed = (claims: any): boolean => {
+            // Check if claims is defined and is an array
+            if (!claims || !Array.isArray(claims)) {
+                return false;
             }
 
-            return true
+            // Check if userId exists in the claims array
+            return claims.includes(userData.userInfo.UserID);
         }
         useEffect(() => {
             if (data) {
@@ -112,7 +114,10 @@ export const Tips: FC<any> = ({ color, className, ...rest }) => {
                                                 }} className="text-white" label="Claiming... Please Wait!" color="warning" />
                                             ) : (
                                                 <div className="w-full text-center text-3xl !text-primary-300 flex items-center justify-center">
-                                                    <span>You cannot claim without inviting 50 users.</span>
+                                                    <span>
+                                                        {error ? error.response.data : data}
+
+                                                    </span>
                                                 </div>
                                             )
                                         }
@@ -185,9 +190,9 @@ export const Tips: FC<any> = ({ color, className, ...rest }) => {
                 <div className="w-full h-full flex flex-col gap-2" style={{ color }}>
                     {
                         loading && <div className="w-full h-screen flex items-center justify-center">
-                              <Spinner classNames={{
-                                                    label: "text-3xl"
-                                                }} label="Loading... Please Wait!" color="warning" labelColor="warning" />
+                            <Spinner classNames={{
+                                label: "text-3xl"
+                            }} label="Loading... Please Wait!" color="warning" labelColor="warning" />
                         </div>
                     }
                     {
@@ -199,17 +204,21 @@ export const Tips: FC<any> = ({ color, className, ...rest }) => {
                         ))
                     }
                     {
-                        !loading  && tips.length == 0 && <div className="w-full h-screen flex flex-col gap-2 text-center items-center justify-center">
-                            <Button onClick={()=>{
+                        !loading && tips.length == 0 && <div className="w-full h-screen flex flex-col gap-2 text-center items-center justify-center overflow-x-none">
+                            <Button onClick={() => {
                                 hapticFeedback.impactOccurred("heavy")
                                 loadMoreUsers()
-                            }} isLoading={loading} variant="light"  color="default" className="w-full h-full flex flex-col gap-2 text-center items-center justify-center p-4">
-                                <Image width={200} src={getUserAvatarUrl(userData.userInfo.UserID)}/>
+                            }} isLoading={loading} variant="light" color="default" className="w-full h-full flex flex-col gap-2 text-center items-center justify-center p-2">
+                                <Image width={180} src={getUserAvatarUrl(userData.userInfo.UserID)} />
+                                <div className="w-full text-center overflow-hidden">
+                                    <span className="text-white text-md sm:text-center sm:text-xs whitespace-normal">
+                                        There are no active TIPs right now. Please join the MAGGOO Telegram channel and use the TIP command. MAGGOO will automatically distribute the TIPs. Each TIP is only valid for 3 minutes. The fastest one wins!
+                                    </span>
+                                </div>
+
                             </Button>
-                            
-                            <span className="!text-primary-300 text-lg">
-                            There are no active TIPs right now. Please join the MAGGOO Telegram channel and use the TIP command. MAGGOO will automatically distribute the TIPs. Each TIP is only valid for 3 minutes. The fastest one wins!
-                            </span>
+
+
                         </div>
                     }
 
