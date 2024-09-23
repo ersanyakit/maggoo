@@ -78,7 +78,7 @@ export const Players: FC<any> = ({ color, className, ...rest }) => {
                      
                 </div>
 
-            <div className="grid grid-cols-3 w-full h-full max-h-[calc(100vh-200px)] gap-4 overflow-y-scroll">
+            <div className="grid grid-cols-3 w-full h-full max-h-[calc(100vh-200px)] gap-4 overflow-y-scroll overflow-x-hidden">
 
                 {
                     users.map((player: any) => (
