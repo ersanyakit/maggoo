@@ -35,10 +35,10 @@ body {
 }
 
 .btn-primary {
-  @apply border border-2 border-primary-100 bg-primary-300 text-white;
+  @apply border border-2 border-primary-100 bg-primary-300 text-white !important;
 
   &:hover {
-    @apply border-primary-300 bg-primary-300;
+    @apply border-primary-300 bg-primary-300 !important;
   }
 }
 
@@ -349,12 +349,12 @@ body {
 
       span {
         transform: rotate(-29deg);
-        @apply text-white;
+        @apply text-white !important;
       }
 
-      @apply bg-[#f9843f];
+      @apply bg-[#f9843f] !important;
     }
 
-    @apply bg-[#f4aa5f];
+    @apply bg-[#f4aa5f] !important;
   }
 }

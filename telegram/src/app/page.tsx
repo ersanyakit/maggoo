@@ -71,7 +71,7 @@ export default function Home() {
             className='w-screen h-screen bottom-0'
             classNames={{
               tabList: "gap-2 w-full relative rounded-lg border-divider backdrop-blur-sm bg-white/10",
-              cursor: "w-full border border-2 border-primary-100 !bg-primary-300 !text-white",
+              cursor: "w-full border border-2 !border-primary-100 !bg-primary-300 !text-white",
               tabContent: "group-data-[selected=true]:text-[#fff] text-white/50",
               tab: "h-50 text-white"
             }}
