@@ -78,7 +78,7 @@ export const Players: FC<any> = ({ color, className, ...rest }) => {
                      
                 </div>
 
-                <ScrollShadow className="grid grid-cols-3 w-full h-full max-h-[calc(100vh-220px)] gap-4 overflow-y-scroll overflow-x-hidden">
+                <ScrollShadow size={100} hideScrollBar className="grid grid-cols-3 w-full h-full max-h-[calc(100vh-220px)] gap-4">
 
 
                 {
@@ -90,7 +90,7 @@ export const Players: FC<any> = ({ color, className, ...rest }) => {
 
             <Button onClick={() => {
                 loadMoreUsers()
-            }} fullWidth className="btn btn-primary text-2xl py-6">Load More</Button>
+            }} fullWidth className="btn btn-primary text-2xl py-8">Load More</Button>
         </>
     );
 };
