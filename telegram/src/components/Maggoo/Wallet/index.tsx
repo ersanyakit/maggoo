@@ -60,6 +60,7 @@ export const Wallet: FC<any> = ({ color, className, ...rest }) => {
         }
        }
     }, [loading]);
+    
 
     return (
         <>

@@ -2,7 +2,7 @@ import { FC, useEffect, useMemo } from "react";
 import { Button, Card, CardBody, Modal, ModalBody, ModalContent, Image, ModalFooter, ModalHeader, Spinner, Tab, Tabs, useDisclosure } from "@nextui-org/react";
 import { TonConnectButton, useTonConnectUI, useTonWallet } from "@tonconnect/ui-react";
 import { DEPOSIT_RECEIVER_ADDRESS, generateImage } from "@/app/constants";
-import { useInitData, useLaunchParams, useUtils } from "@telegram-apps/sdk-react";
+import { useInitData, useLaunchParams, useUtils,useHapticFeedback, initHapticFeedback } from "@telegram-apps/sdk-react";
 import useAxiosPost from "@/hooks/useAxios";
 import { useGlobalState } from "@/context/GlobalStateContext";
 import { data } from "framer-motion/client";
@@ -21,6 +21,7 @@ export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => {
 
     const lp = useLaunchParams();
     const initData = useInitData();
+    const hapticFeedback = initHapticFeedback();
 
     const { isOpen: isOpenModelEgg, onOpen: onOpenModelEgg, onClose: onCloseModelEgg } = useDisclosure();
     const { isOpen: isOpenModelBox, onOpen: onOpenModelBox, onClose: onCloseModelBox } = useDisclosure();
@@ -46,6 +47,7 @@ export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => {
     }, [wallet])
 
     const handleOpenEgg = async () => {
+        hapticFeedback.impactOccurred('medium');
 
         let params = {
             user: userData.userInfo.UserID
@@ -68,6 +70,8 @@ export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => {
 
 
     const handleOpenMysteriosBox = async () => {
+        hapticFeedback.impactOccurred('medium');
+
         let params = {
             user: userData.userInfo.UserID
         }
