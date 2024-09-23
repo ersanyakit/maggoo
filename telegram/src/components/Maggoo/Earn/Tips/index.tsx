@@ -14,6 +14,7 @@ export const Tips: FC<any> = ({ color, className, ...rest }) => {
     const [cursor, setCursor] = useState<any>(null);
     const { data, error, loading, postData } = useAxiosPost(`/maggoo/tip`);
     const [tips, setTips] = useState<any>([]);
+    const hapticFeedback = initHapticFeedback();
 
     useEffect(() => {
         loadMoreUsers()
@@ -196,6 +197,20 @@ export const Tips: FC<any> = ({ color, className, ...rest }) => {
                                 tip={tipItem}
                             />
                         ))
+                    }
+                    {
+                        !loading  && tips.length == 0 && <div className="w-full h-screen flex flex-col gap-2 text-center items-center justify-center">
+                            <Button onClick={()=>{
+                                hapticFeedback.impactOccurred("heavy")
+                                loadMoreUsers()
+                            }} isLoading={loading} variant="light"  color="default" className="w-full h-full flex flex-col gap-2 text-center items-center justify-center p-4">
+                                <Image width={200} src={getUserAvatarUrl(userData.userInfo.UserID)}/>
+                            </Button>
+                            
+                            <span className="!text-primary-300 text-lg">
+                            There are no active TIPs right now. Please join the MAGGOO Telegram channel and use the TIP command. MAGGOO will automatically distribute the TIPs. Each TIP is only valid for 3 minutes. The fastest one wins!
+                            </span>
+                        </div>
                     }
 
 
