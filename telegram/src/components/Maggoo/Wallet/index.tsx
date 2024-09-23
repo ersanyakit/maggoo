@@ -139,7 +139,14 @@ export const Wallet: FC<any> = ({ color, className, ...rest }) => {
                     </Card>
                 </Tab>
                 <Tab key={"tokens"} title={"TOKENS"}>
+                <Card className="backdrop-blur-sm bg-transparent">
+                        <CardBody>
+                            <ScrollShadow hideScrollBar style={{ height: `calc(100vh - 400px)` }} className="w-full flex flex-col gap-2">
+                                
                      <MaggooTokens/>
+                     </ScrollShadow>
+                        </CardBody>
+                    </Card>
                 </Tab>
             </Tabs>
         </>
