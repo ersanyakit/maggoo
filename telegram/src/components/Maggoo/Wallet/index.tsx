@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Avatar, Button, Card, CardBody, ScrollShadow, Spinner, Tab, Tabs } from "@nextui-org/react";
 import { TonConnectButton, useTonConnectUI, useTonWallet } from "@tonconnect/ui-react";
 import { DEPOSIT_RECEIVER_ADDRESS } from "@/app/constants";
-import { useInitData, useLaunchParams, useUtils } from '@telegram-apps/sdk-react';
+import { initHapticFeedback, useInitData, useLaunchParams, useUtils } from '@telegram-apps/sdk-react';
 import { DisplayData } from "@/components/DisplayData/DisplayData";
 import { List, Section, Cell, Navigation, Title, Placeholder } from "@telegram-apps/telegram-ui";
 import InitDataPage from "@/app/init-data/page";
@@ -16,6 +16,7 @@ import useAxiosPost from "@/hooks/useAxios";
 export const Wallet: FC<any> = ({ color, className, ...rest }) => {
     const { data, error, loading, postData } = useAxiosPost('/maggoo/sync');
     const { setUserData, userData } = useGlobalState(); // Global state'e erişim
+    const hapticFeedback = initHapticFeedback();
 
     const [tonConnectUI, setOptions] = useTonConnectUI();
     const wallet = useTonWallet();
@@ -60,11 +61,15 @@ export const Wallet: FC<any> = ({ color, className, ...rest }) => {
         }
        }
     }, [loading]);
-    
+
 
     return (
         <>
-            <Tabs classNames={{
+            <Tabs 
+             onSelectionChange={()=>{
+                hapticFeedback.impactOccurred("soft")
+              }}
+            classNames={{
                 tabList: "backdrop-blur-sm bg-white/10",
                 cursor: "w-full border border-2 border-primary-100 bg-primary-300 text-white",
                 tabContent: "group-data-[selected=true]:text-[#fff] text-white/50",

@@ -220,7 +220,11 @@ export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => {
                 </ModalContent>
             </Modal>
 
-            <Tabs classNames={{
+            <Tabs 
+             onSelectionChange={()=>{
+                hapticFeedback.impactOccurred("soft")
+              }}
+            classNames={{
                 tabList: "backdrop-blur-sm bg-white/10",
                 cursor: "w-full border border-2 border-primary-100 bg-primary-300 text-white",
                 tabContent: "group-data-[selected=true]:text-[#fff] text-white/50",
