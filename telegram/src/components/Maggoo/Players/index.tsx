@@ -63,14 +63,14 @@ export const Players: FC<any> = ({ color, className, ...rest }) => {
     return (
         <>
 
-            <div  className="rounded-lg bg-white/80 p-4 w-full flex flex-row gap-2 items-start justify-around">
-                <span className="!text-primary-300">Total User Count</span>
+            <div  className="rounded-lg bg-white/30 border border-2 border-white/30 p-4 w-full flex flex-row gap-2 items-start justify-between">
+                <span className="!text-primary-300 text-lg  w-full">Total User Count</span>
                 
                     {
-                        loading ? <>
+                        loading ? <div className="w-full flex flex-col justify-center items-end">
                               <Spinner size="sm" color="success" labelColor="success"/>
 
-                        </> : <><span className="text-success-500">
+                        </div> : <><span className="text-success-500 text-lg w-full text-end">
                             {data && (data as any).totalUserCount}
                             </span>
                             </>
