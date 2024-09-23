@@ -218,12 +218,13 @@ export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => {
                         <CardBody>
                             <div className="w-full h-full p-2 flex-col border-2 border-white/30 flex justify-around items-center rounded-xl">
 
-                                <div className="w-full flex items-center justify-center flex-grow-2  flex-shrink-0">
+                                <div className="w-full w-full flex items-center justify-center flex-grow-2  flex-shrink-0">
 
                                     <Image
+                                    
                                         src={"/eggs/egg_default.png"}
                                         alt="egg"
-                                        width={160}
+                                        width={200}
                                         height={260}
                                         className="bg-transparent w-full"
                                     />

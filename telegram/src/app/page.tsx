@@ -33,23 +33,25 @@ export default function Home() {
     return initData && initData.user ? initData : undefined;
   }, [initData]);
 
+
+  const sendData = async () => {
+    const userInfo: any = {
+      user: userRows.initData.user,
+      referrall: lp.startParam || userRows.initData.startParam || "",
+    };
+    await postData(userInfo); // userInfo'yu sunucuya gönder
+  }
   useEffect(() => {
     if (userRows) {
-      const userInfo: any = {
-        user: userRows.initData.user,
-        referrall: lp.startParam || userRows.initData.startParam || "",
-      };
-
-      console.log("Sending userInfo to server:", userInfo);
-      postData(userInfo); // userInfo'yu sunucuya gönder
+      sendData()
     }
   }, [userRows, lp.startParam]); // `userRows` veya `lp.startParam` değiştiğinde POST isteği yapılır
 
   useEffect(() => {
-    console.log("loading", loading)
-    console.log(data)
-    setUserData(data);
-
+    if(!loading){
+      setUserData(data);
+    }
+  
   }, [loading])
 
   return (
