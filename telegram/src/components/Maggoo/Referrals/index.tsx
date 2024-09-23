@@ -1,5 +1,5 @@
 import { Avatar, Button, Image, Link, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ScrollShadow, Spinner, useDisclosure, User } from "@nextui-org/react";
-import { useInitData, useLaunchParams } from "@telegram-apps/sdk-react";
+import { initHapticFeedback, useInitData, useLaunchParams } from "@telegram-apps/sdk-react";
 import { FC, useEffect, useMemo, useState } from "react";
 import { initUtils } from '@telegram-apps/sdk';
 import { generateImage, getUserAvatarUrl } from "@/app/constants";
@@ -26,9 +26,12 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
         const [modalPlacement, setModalPlacement] = useState("auto");
 
         const { data, error, loading, postData } = useAxiosPost('/maggoo/claim');
+        const hapticFeedback = initHapticFeedback();
 
 
         const handleClaim = async (refInfo: any) => {
+            hapticFeedback.impactOccurred('heavy');
+
             console.log("handleClaim:refInfo", refInfo.referral)
             const userInfo: any = {
                 user: refInfo.referral,
