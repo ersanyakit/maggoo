@@ -78,14 +78,16 @@ export const Players: FC<any> = ({ color, className, ...rest }) => {
                      
                 </div>
 
-            <div className="grid grid-cols-3 w-full h-full max-h-[calc(100vh-220px)] gap-4 overflow-y-scroll overflow-x-hidden">
+                <ScrollShadow className="grid grid-cols-3 w-full h-full max-h-[calc(100vh-220px)] gap-4 overflow-y-scroll overflow-x-hidden">
+
 
                 {
                     users.map((player: any) => (
                         <Player key={player.UserID} player={player} />
                     ))
                 }
-            </div>
+            </ScrollShadow>
+
             <Button onClick={() => {
                 loadMoreUsers()
             }} fullWidth className="btn btn-primary text-2xl py-6">Load More</Button>
