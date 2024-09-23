@@ -11,7 +11,7 @@ import { Header } from '@/components/Header';
 import { EggsAndBoxes } from '@/components/Maggoo/EggsBoxes';
 import { Referrals } from '@/components/Maggoo/Referrals';
 import { useTonWallet } from '@tonconnect/ui-react';
-import { useInitData, useLaunchParams, useUtils } from '@telegram-apps/sdk-react';
+import { initHapticFeedback, useInitData, useLaunchParams, useUtils } from '@telegram-apps/sdk-react';
 import { Wallet } from '@/components/Maggoo/Wallet';
 import { useEffect, useMemo } from 'react';
 import useAxiosPost from '@/hooks/useAxios';
@@ -25,6 +25,7 @@ export default function Home() {
   const { data, error, loading, postData } = useAxiosPost('/maggoo/sync');
   const { setUserData } = useGlobalState(); // Global state'e erişim
 
+  const hapticFeedback = initHapticFeedback();
 
   const lp = useLaunchParams();
   const initData = useInitData();
@@ -60,6 +61,9 @@ export default function Home() {
         <Header />
         <div className="flex fixed flex-wrap">
           <Tabs
+            onSelectionChange={()=>{
+              hapticFeedback.impactOccurred("soft")
+            }}
             fullWidth
             color="default"
             variant='light'
