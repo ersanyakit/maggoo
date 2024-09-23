@@ -235,7 +235,7 @@ export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => {
 
                                     <Button onClick={() => {
                                         handleOpenEgg()
-                                    }} isDisabled={eggLoading} isLoading={eggLoading} variant="flat" color="default" className="w-full h-full flex flex-col gap-2 text-center items-center justify-center p-4">
+                                    }} isDisabled={eggLoading} isLoading={eggLoading} variant="light" color="default" className="w-full h-full flex flex-col gap-2 text-center items-center justify-center p-4">
 
                                         <Image
 
@@ -271,7 +271,7 @@ export const EggsAndBoxes: FC<any> = ({ color, className, ...rest }) => {
 
                                 <Button onClick={() => {
                                         handleOpenMysteriosBox()
-                                    }} isDisabled={boxLoading} isLoading={boxLoading} variant="flat" color="default" className="w-full h-full flex flex-col gap-2 text-center items-center justify-center p-4">
+                                    }} isDisabled={boxLoading} isLoading={boxLoading} variant="light" color="default" className="w-full h-full flex flex-col gap-2 text-center items-center justify-center p-4">
 
                                         <Image
 
