@@ -9,7 +9,6 @@ import { Intro } from '@/components/Maggoo/Intro';
 import { Tab, Tabs } from "@nextui-org/react";
 import { Header } from '@/components/Header';
 import { EggsAndBoxes } from '@/components/Maggoo/EggsBoxes';
-import { Referrals } from '@/components/Maggoo/Referrals';
 import { useTonWallet } from '@tonconnect/ui-react';
 import { initHapticFeedback, useInitData, useLaunchParams, useUtils } from '@telegram-apps/sdk-react';
 import { Wallet } from '@/components/Maggoo/Wallet';
@@ -17,6 +16,7 @@ import { useEffect, useMemo } from 'react';
 import useAxiosPost from '@/hooks/useAxios';
 import { useGlobalState } from '@/context/GlobalStateContext';
 import { Market } from '@/components/Maggoo/Market';
+import { Earn } from '@/components/Maggoo/Earn';
 
 export default function Home() {
 
@@ -89,7 +89,7 @@ export default function Home() {
               </div>
             }>
               <div className='w-screen h-[calc(100vh-180px)]  pt-[150px] p-2'>
-                <Referrals />
+                <Earn />
               </div>
 
 

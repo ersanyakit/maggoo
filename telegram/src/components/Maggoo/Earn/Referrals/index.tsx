@@ -110,8 +110,10 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
                 <div className="w-full rounded-lg p-2  backdrop-blur-sm  bg-transparent">
                     <div className="rounded-lg text-primary-500 p-2 border border-2 border-white/30 flex items-center justify-between">
                         <User
+                            
                             classNames={{
-                                base: "text"
+                                base: "",
+
                             }}
                             name={referralItem.referral.NickName}
                             description={(
@@ -159,7 +161,7 @@ export const Referrals: FC<any> = ({ color, className, ...rest }) => {
     return (
         <div className={`w-full h-full flex gap-2 flex-col ${className}`} {...rest}>
 
-            <ScrollShadow hideScrollBar className="w-full" style={{ height: `calc(100vh - 400px)` }} >
+            <ScrollShadow hideScrollBar className="w-full" style={{ height: `calc(100vh - 470px)` }} >
 
                 <div className="w-full flex flex-col gap-2" style={{ color }}>
                     {userData && userData.referrals.map((referral: any) => (
