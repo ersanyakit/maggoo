@@ -1,6 +1,6 @@
 import { FC, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
-import { Avatar, Button, Card, CardBody, ScrollShadow, Tab, Tabs } from "@nextui-org/react";
+import { Avatar, Button, Card, CardBody, ScrollShadow, Spinner, Tab, Tabs } from "@nextui-org/react";
 import { TonConnectButton, useTonConnectUI, useTonWallet } from "@tonconnect/ui-react";
 import { DEPOSIT_RECEIVER_ADDRESS } from "@/app/constants";
 import { useInitData, useLaunchParams, useUtils } from '@telegram-apps/sdk-react';
@@ -72,13 +72,29 @@ export const Wallet: FC<any> = ({ color, className, ...rest }) => {
                     <Card className="backdrop-blur-sm bg-transparent">
                         <CardBody>
                             <ScrollShadow hideScrollBar style={{ height: `calc(100vh - 400px)` }} className="w-full flex flex-col gap-2">
-                                {
-                                    userData && userData.balanceInfo.map((item: any, index: number) => (
-                                        <div key={`magggoo${index}`} className="w-full overflow-none p-2 w-full">
-                                            <NFTCard item={item} tokenId={item.token_identifier} />
-                                        </div>
-                                    ))
-                                }
+                                
+                            {
+                                            loading ? (
+                                                <div className="w-full h-screen flex items-center justify-center">
+
+                                                <Spinner classNames={{
+                                                    label: "text-3xl"
+                                                }} label="Loading... Please Wait!" color="warning" labelColor="warning" />
+                    
+                                            </div>
+                                            ) : (
+                                                
+                                                    userData && userData.balanceInfo.map((item: any, index: number) => (
+                                                        <div key={`magggoo${index}`} className="w-full overflow-none p-2 w-full">
+                                                            <NFTCard item={item} tokenId={item.token_identifier} />
+                                                        </div>
+                                                    ))
+                                                
+                                            )
+                                        }
+
+                                 
+                               
                             </ScrollShadow>
                         </CardBody>
                     </Card>
