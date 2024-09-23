@@ -1,6 +1,6 @@
 import { FC, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
-import { Avatar, Button, Card, CardBody, ScrollShadow, Spinner, Tab, Tabs } from "@nextui-org/react";
+import { Avatar, Button, Card, CardBody, ScrollShadow, Spinner, Tab, Tabs, User } from "@nextui-org/react";
 import { TonConnectButton, useTonConnectUI, useTonWallet } from "@tonconnect/ui-react";
 import { DEPOSIT_RECEIVER_ADDRESS } from "@/app/constants";
 import { initHapticFeedback, useInitData, useLaunchParams, useUtils } from '@telegram-apps/sdk-react';
@@ -63,6 +63,39 @@ export const Wallet: FC<any> = ({ color, className, ...rest }) => {
     }, [loading]);
 
 
+
+    const MaggooToken = (props:{tokenName: any,tokenSymbol:any,tokenIcon:any,tokenBalance : any}) => {
+        return (
+            <div className="w-full rounded-lg p-2  backdrop-blur-sm  bg-transparent">
+            <div className="rounded-lg text-primary-500 p-2 border border-2 border-white/30 flex items-center justify-between">
+                <User
+                    classNames={{
+                        base: "text",
+                        description:"!text-primary-300"
+                    }}
+                    name={props.tokenName}
+                    description={props.tokenSymbol}
+                  
+                    avatarProps={{
+                        src: props.tokenIcon
+                    }}
+                />
+                <span className="text-green-500 text-xl">{parseFloat(props.tokenBalance).toFixed(6)} {props.tokenSymbol}</span>
+            </div>
+        </div>
+        )
+    }
+    const MaggooTokens = () => {
+        return (
+        <div className="w-full flex flex-col gap-2">
+            <MaggooToken tokenIcon={"/ton.svg"} tokenName={"TON"} tokenSymbol={"TON"} tokenBalance={userData.userInfo.TON}/>
+            <MaggooToken tokenIcon={"/mag.svg"} tokenName={"MAGGOO"} tokenSymbol={"MAG"} tokenBalance={userData.userInfo.MAG}/>
+            <MaggooToken tokenIcon={"/kwl.svg"} tokenName={"KEWL"} tokenSymbol={"KWL"} tokenBalance={userData.userInfo.KWL}/>
+            <MaggooToken tokenIcon={"/chzinu.svg"} tokenName={"CHZINU"} tokenSymbol={"CHZINU"} tokenBalance={userData.userInfo.CHZINU}/>
+            <MaggooToken tokenIcon={"/chz.svg"} tokenName={"CHILIZ"} tokenSymbol={"CHZ"} tokenBalance={userData.userInfo.CHZ}/>
+        </div>)
+    }
+
     return (
         <>
             <Tabs 
@@ -106,7 +139,7 @@ export const Wallet: FC<any> = ({ color, className, ...rest }) => {
                     </Card>
                 </Tab>
                 <Tab key={"tokens"} title={"TOKENS"}>
-                    TONS OF TOKEN
+                     <MaggooTokens/>
                 </Tab>
             </Tabs>
         </>
