@@ -59,9 +59,10 @@ export const Tips: FC<any> = ({ color, className, ...rest }) => {
         const handleClaim = async (tipInfo: any) => {
             hapticFeedback.impactOccurred('heavy');
 
+            console.log("tipData",tipData.tip)
             let params = {
                 user: userData.userInfo.UserID,
-                tip: tipData.tip.tipId
+                tip: tipData.tip.tip_id
             }
             await postData(params).then(() => {
 
