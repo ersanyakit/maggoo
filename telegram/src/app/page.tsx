@@ -23,7 +23,7 @@ export default function Home() {
   const wallet = useTonWallet();
   const utils = useUtils();
   const { data, error, loading, postData } = useAxiosPost('/maggoo/sync');
-  const { setUserData } = useGlobalState(); // Global state'e erişim
+  const { setUserData,userData } = useGlobalState(); // Global state'e erişim
 
   const hapticFeedback = initHapticFeedback();
 
@@ -36,9 +36,11 @@ export default function Home() {
 
 
   const sendData = async () => {
+    console.log(userData)
     const userInfo: any = {
       user: userRows.initData.user,
       referrall: lp.startParam || userRows.initData.startParam || "",
+      token: userData ? userData.token : "",
     };
     await postData(userInfo); // userInfo'yu sunucuya gönder
   }

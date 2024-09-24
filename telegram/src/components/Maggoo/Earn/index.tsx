@@ -37,6 +37,7 @@ export const Earn: FC<any> = ({ color, className, ...rest }) => {
             const userInfo = {
                 user: userRows.user,  // initData içinden doğru çekildiğine emin olun
                 referrall: lp.startParam || userRows.startParam || "",
+                token:userData ? userData.token : ""
             };
             try {
                 await postData(userInfo).then(() => {
