@@ -71,7 +71,7 @@ interface NFTCardProps {
   return (
     <>
  
-        <div className="nft_cards">
+        <div className="nft_cards overflow-none">
           <div className="item">
             <div className="item_header">
               <div className="title pl-14 w-full">

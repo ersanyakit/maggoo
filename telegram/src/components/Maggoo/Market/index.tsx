@@ -34,13 +34,13 @@ export const Market: FC<any> = ({ color, className, ...rest }) => {
                 <CardBody>
 
 
-                    <ScrollShadow hideScrollBar style={{ height: `calc(100vh - 350px)` }} className="w-full overflow-x-none oveflow-x-hidden flex flex-col gap-2">
+                    <ScrollShadow orientation="horizontal" hideScrollBar style={{ height: `calc(100vh - 350px)` }} className="w-full p-2 overflow-x-none oveflow-x-hidden flex flex-col gap-2">
 
 
                         {
                             !loading && data && (data as any).map((item: any, index: number) => (
 
-                                <div key={`magggoo${index}`} className="w-full overflow-none p-2 w-full">
+                                <div key={`magggoo${index}`} className="w-full min-h-[400px] overflow-x-hidden overflow-hidden w-full p-2">
                                     <BuyItem item={item} tokenId={item.token_identifier} />
                                 </div>
                             ))
