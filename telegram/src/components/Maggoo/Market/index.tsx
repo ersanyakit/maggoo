@@ -34,7 +34,7 @@ export const Market: FC<any> = ({ color, className, ...rest }) => {
                 <CardBody>
 
 
-                    <ScrollShadow hideScrollBar style={{ height: `calc(100vh - 350px)` }} className="w-full flex flex-col gap-2">
+                    <ScrollShadow hideScrollBar style={{ height: `calc(100vh - 350px)` }} className="w-full overflow-x-none oveflow-x-hidden flex flex-col gap-2">
 
 
                         {
