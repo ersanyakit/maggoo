@@ -95,6 +95,10 @@ export const Wallet: FC<any> = ({ color, className, ...rest }) => {
             <MaggooToken tokenIcon={"/chzinu.svg"} tokenName={"CHZINU"} tokenSymbol={"CHZINU"} tokenBalance={userData.userInfo.CHZINU}/>
             <MaggooToken tokenIcon={"/chz.svg"} tokenName={"CHILIZ"} tokenSymbol={"CHZ"} tokenBalance={userData.userInfo.CHZ}/>
             <MaggooToken tokenIcon={"/fafo.svg"} tokenName={"FAFOFootyFan"} tokenSymbol={"FAFO"} tokenBalance={userData.userInfo.FAFO}/>
+            <MaggooToken tokenIcon={"/angry.svg"} tokenName={"ANGRY HOOP"} tokenSymbol={"ANGRY"} tokenBalance={userData.userInfo.ANGRY}/>
+            <MaggooToken tokenIcon={"/tbt.svg"} tokenName={"TBT"} tokenSymbol={"TBT"} tokenBalance={userData.userInfo.TBT}/>
+            <MaggooToken tokenIcon={"/fanfan.svg"} tokenName={"FANFAN"} tokenSymbol={"FANFAN"} tokenBalance={userData.userInfo.FANFAN}/>
+  
         </div>)
     }
 
