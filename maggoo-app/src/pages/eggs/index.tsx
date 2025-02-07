@@ -27,9 +27,9 @@ const Eggs = () => {
   const [waitModalOpen, setWaitModalOpen] = useState(false);
   const [errorModalOpen, setErrorModalOpen] = useState<boolean>(false);
 
-  const [maggooEggFee, setMaggooEggFee] = useState<any>(parseEther("250"));
+  const [maggooEggFee, setMaggooEggFee] = useState<any>(parseEther("0"));
   const [mysteriousBoxFee, setMysteriousBoxFee] = useState<any>(
-    parseEther("100")
+    parseEther("0")
   );
 
   const [maggooEggAmount, setMaggooEggAmount] = useState<number>(1);
@@ -254,7 +254,7 @@ const Eggs = () => {
                     className=" btn-primary w-full py-8 text-2xl"
                   >
                     <p>
-                      {formatEther(maggooEggFee * BigInt(maggooEggAmount))} CHZ
+                    Free Mint
                     </p>
                   </Button>
                 </div>
@@ -311,7 +311,7 @@ const Eggs = () => {
                     className=" btn-primary  w-full py-8 text-2xl"
                   >
                     <p>
-                      {formatEther(mysteriousBoxFee * BigInt(boxAmount))} CHZ
+                      Free Mint
                     </p>
                   </Button>
                 </div>
