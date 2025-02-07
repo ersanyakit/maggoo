@@ -394,11 +394,7 @@ const MaggooUpgrade = () => {
 
 
 <div className="w-full max-w-3xl justify-between flex flex-col   h-full rounded-xl p-10 border-2 border-black bg-header-bg">
-    <div className="w-full ">
-        <div className="w-full flex overflow-hidden ">
-            <FanTokens />
-        </div>
-    </div>
+ 
     <div className="flex w-full order h-full grid grid-cols-8 gap-4 justify-between items-center">
         <div className="col-span-2 sm:col-span-4 sm:order-1 w-full flex flex-col gap-5 h-full ">
 
