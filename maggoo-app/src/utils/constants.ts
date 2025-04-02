@@ -1,7 +1,7 @@
 import { createPublicClient, http } from "viem";
-import { CHILIZ } from "./chains";
-import { chiliz } from "viem/chains";
-import { IContract } from "@/types";
+import { CHILIZ, SONIC } from "./chains";
+import { chiliz, sonic } from "viem/chains";
+import { IContract, NetworkClient } from "@/types";
 
 import MaggoDiamondAbi from "../contracts/abi/MaggooDiamond.json";
 import MaggoNFTAbi from "../contracts/abi/MaggooNFT.json";
@@ -14,7 +14,7 @@ export const MORALIS_API_KEY =
 
 export const metadata = {
   name: "Maggoo APP",
-  description: "Desx.",
+  description: "Maggoo Land is a community driven decentralized P2E gaming platform with upgradable NFT cult characters called Maggoo.",
   url: "http://app.maggoo.io",
   icons: ["/logo/logo-symbol.png"],
 };
@@ -28,6 +28,33 @@ export const chilizClient = createPublicClient({
   chain: chiliz,
   transport: http(CHILIZ.rpcUrl),
 });
+
+
+export const sonicClient = createPublicClient({
+  batch: {
+    multicall: true,
+  },
+  cacheTime: 10_000,
+  pollingInterval: 10_000,
+  chain: sonic,
+  transport: http(SONIC.rpcUrl),
+});
+
+
+export const NETWORKS: Record<string, NetworkClient> = {
+  chiliz: { client: chilizClient, network: CHILIZ },
+  hardhat: { client: sonicClient, network: SONIC },
+}
+
+export function getNetworkClient(chainId: number): NetworkClient {
+
+  console.log("getNetworkClient: currentChainId", chainId)
+  const network = Object.values(NETWORKS).find((net) => net.network.chainId && net.network.chainId === chainId);
+  if (!network) {
+      throw new Error(`Network with chainId ${chainId} not found`);
+  }
+  return network;
+}
 
 export const MAGGO_DIAMOND_CONTRACT: IContract = {
   address: CONTRACT_ADRESSES.MAGGOODIAMOND,

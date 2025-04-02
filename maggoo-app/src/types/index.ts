@@ -1,4 +1,5 @@
 import { parseEther } from "viem";
+import { PublicClient } from "viem";
 
 export interface IContract {
   address: `0x${string}` | any;
@@ -14,6 +15,22 @@ export interface CONTRACTADDRESS {
   WCHZ: `0x${string}` | string;
   FAN_TOKENS: any[] | string[];
 }
+
+export type TNetwork = {
+  chainId: number;
+  name: string;
+  currency: string;
+  explorerUrl: string;
+  rpcUrl: string;
+  image: string;
+};
+
+
+export type NetworkClient = {
+  network: TNetwork;
+  client:PublicClient;
+};
+
 
 enum WearableSlot {
   Body = 0,

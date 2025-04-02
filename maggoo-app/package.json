@@ -23,7 +23,7 @@
     "react": "^18",
     "react-dom": "^18",
     "siwe": "^2.3.2",
-    "viem": "^2.10.3"
+    "viem": "^2.24.3"
   },
   "devDependencies": {
     "@types/node": "^20",

@@ -1,4 +1,5 @@
-import { chiliz } from "viem/chains";
+import { chiliz,sonic } from "viem/chains";
+
 
 export const CHILIZ = {
   chainId: chiliz.id,
@@ -6,7 +7,16 @@ export const CHILIZ = {
   currency: chiliz.nativeCurrency.symbol,
   explorerUrl: "https://chiliscan.com/",
   rpcUrl: "https://rpc.chiliz.com",
-  image: "/logo/chiliz.svg",
+  image: "/logo/chz.svg",
 };
 
-export const ALL_CHAINS = [CHILIZ];
+export const SONIC = {
+  chainId: sonic.id,
+  name: sonic.name,
+  currency: sonic.nativeCurrency.symbol,
+  explorerUrl: "https://sonicscan.com",
+  rpcUrl: "https://rpc.soniclabs.com",
+  image: "/logo/sonic.svg",
+};
+
+export const ALL_CHAINS = [SONIC,CHILIZ];
